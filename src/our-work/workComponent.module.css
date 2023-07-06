@@ -1,4 +1,5 @@
 .portfolio_container {
-    height: 100vh;
+    height: 200vh;
     width: 100%;
+    background-color: rgba(17, 17, 17, 0.658);
 }

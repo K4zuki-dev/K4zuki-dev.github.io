@@ -4,6 +4,8 @@ import styles from "./landing-div.module.css"
 import { ReactNode } from "react"
 import { easeInOut, motion } from "framer-motion"
 
+import Header from "@/Header/Header"
+
 const container = {
     show: {
       transition: {
@@ -19,7 +21,7 @@ const item = {
 }
 
 const item2 = {
-    hidden: { y: "2em" },
+    hidden: { y: "3em" },
     show: { 
         y: "0em",
         transition: {
@@ -59,15 +61,12 @@ export default function Landing() {
 
             </div>
 
-            <div className={styles.overlay}>
-
-            </div>
+            <div className={styles.overlay}></div>
 
         </div>
 
-        <div >
-            <h1>Test</h1>
-        </div>
+        <Header></Header>
+
         </>
     )
 }
