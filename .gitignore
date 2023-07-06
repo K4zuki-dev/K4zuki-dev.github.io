@@ -31,9 +31,10 @@ yarn-error.log*
 .vercel
 
 # javascript
-next.config.js
+/next.config.js
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/next.config.js
 next.config.js
