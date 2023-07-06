@@ -19,13 +19,13 @@ const item = {
 }
 
 const item2 = {
-    hidden: { y: "10em" },
+    hidden: { y: "2em" },
     show: { 
         y: "0em",
         transition: {
             ease: easeInOut,
-            duration: 1,
-            delay: 2,
+            duration: .2,
+            delay: 2.5,
         }
 }
 }
