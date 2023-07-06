@@ -1,17 +1,23 @@
-#withus {
+#withUs {
     color: white;
-    font-size: 200%;
+    font-size: 400%;
+    z-index: 0;
 }
 
 .landing_div {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     width: 100%;
     height: 100vh;
 
     background-color: rgb(5, 5, 5);
+}
+
+.landing_fade_in {
+    position: relative;
 }
 
 .landing_div_sentence {
@@ -23,17 +29,20 @@
     font-size: 150%;
 }
 
-.landing_div_text {
-    width: 70%;
-    height: fit-content;
-    gap: .5em;
-    padding: 3em;
-    border: solid yellow;
+.landing_div_sentence>h1 {
+    position: relative;
+    top: -300%;
+}
 
+.landing_div_text {
+    position: relative;
+    width: 70%;
+    padding: 2em;
+    gap: .5em;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 2em;
 }
 
 .color_accent {
@@ -47,4 +56,26 @@
 .section {
     width: 30%;
     height: 50%;
+}
+
+.overlay {
+    width: 70%;
+    height: 100%;
+
+    background-color: rgb(5, 5, 5);
+    z-index: 1;
+}
+
+.active>text {
+    animation: move 1s;
+}
+
+@keyframes move {
+    from {
+        translate: 50px;
+    }
+
+    to {
+        translate: 100px;
+    }
 }

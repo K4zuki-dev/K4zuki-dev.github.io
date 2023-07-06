@@ -1,26 +1,68 @@
+"use client"
+
 import styles from "./landing-div.module.css"
+import { ReactNode } from "react"
+import { easeInOut, motion } from "framer-motion"
+
+const container = {
+    show: {
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 1,
+      }
+    }
+}
+
+const item = {
+    hidden: { },
+    show: { top: "0px" }
+}
+
+const item2 = {
+    hidden: { y: "10em" },
+    show: { 
+        y: "0em",
+        transition: {
+            ease: easeInOut,
+            duration: 1,
+            delay: 2,
+        }
+}
+}
+
 
 export default function Landing() {
-    
+
+    const words: string[] = ["Bring", "your", "dreams", "and", "ambitions", "to", "life"]
+    const elems: ReactNode[] = words.map((word) => {
+        return <motion.h1 variants={item} key={word} className={`${styles.landing_fade_in} ${styles.active} ${(word === "ambitions" || word === "life" || word === "dreams") ? (styles.color_accent) : (styles.color_white)}`}>{word}</motion.h1>
+    })
+
+
     return (
         <>
         <div className={styles.landing_div}>
-            <div className={styles.landing_div_text}>
-                <div className={styles.landing_div_sentence}>
-                    <h1 className={`${styles.landing_fade_in} ${styles.color_white}`}>Bring</h1>
-                    <h1 className={`${styles.landing_fade_in} ${styles.color_white}`}>your</h1>
-                    <h1 className={`${styles.landing_fade_in} ${styles.color_accent}`}>dreams</h1>
-                    <h1 className={`${styles.landing_fade_in} ${styles.color_white}`}>and</h1>
-                    <h1 className={`${styles.landing_fade_in} ${styles.color_accent}`}>ambitions</h1>
-                    <h1 className={`${styles.landing_fade_in} ${styles.color_white}`}>to</h1>
-                    <h1 className={`${styles.landing_fade_in} ${styles.color_accent}`}>life</h1>
-                </div>
 
-                <div id={styles.withus}>
-                    <h1>With us</h1>
-                </div>
+            <div className={styles.overlay}>
 
             </div>
+
+            <div className={styles.landing_div_text}>
+                
+                <motion.div initial="hidden" animate="show" variants={container} className={styles.landing_div_sentence}>
+                        {elems}
+                </motion.div>
+                    
+                <motion.div>
+                    <motion.h1 initial="hidden" animate="show" variants={item2} id={styles.withUs}>With us.</motion.h1>
+                </motion.div>
+
+            </div>
+
+            <div className={styles.overlay}>
+
+            </div>
+
         </div>
 
         <div >
