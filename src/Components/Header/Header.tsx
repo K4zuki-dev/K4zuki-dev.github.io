@@ -35,7 +35,7 @@ export default function Header() {
 
                 <div className={styles.header_top}>
                     <div className={styles.logo}>
-                        <Image src="/images/Logo.jpg" alt="Our Logo" fill={true} className={styles.logo} />
+                        <Image src="/images/logo.jpg" alt="Our Logo" fill={true} className={styles.logo} />
                     </div>
 
                     <nav className={styles.navBar}>
