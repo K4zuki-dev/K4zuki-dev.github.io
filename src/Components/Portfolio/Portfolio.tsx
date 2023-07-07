@@ -67,10 +67,12 @@ export default async function Portfolio() {
     const res = await fetch("http://localhost:3000/api/sites", {
       method: "GET",
       headers: {
-        "Content-Type": "application-json",
+        "Content-Type": "application/json",
       },
     });
     const data: ourWork[] = await res.json();
+
+    console.log(data)
 
     return data;
   }

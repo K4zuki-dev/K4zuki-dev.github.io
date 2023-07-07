@@ -18,11 +18,5 @@ export async function GET() {
 
   } 
 
-  console.log(sites)
-
   return NextResponse.json(sites) ;
-
-
-  // remove this if u want the old response back, this is hardcoded
-  // return NextResponse.json([{title: "Portfolio", description:"lalalal", image: "test"}, {title: "Test", description:"lalalaldsfh", image: "tesniggert"}])
 }
