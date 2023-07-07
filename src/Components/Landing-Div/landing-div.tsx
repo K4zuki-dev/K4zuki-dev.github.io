@@ -6,11 +6,14 @@ import { easeInOut, motion } from "framer-motion"
 
 import Header from "@/Components/Header/Header"
 
+const delaySentence: number = .5
+const delayWithUs: number = delaySentence+1
+
 const container = {
     show: {
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 1,
+        delayChildren: delaySentence,
       }
     }
 }
@@ -27,7 +30,7 @@ const item2 = {
         transition: {
             ease: easeInOut,
             duration: .2,
-            delay: 2.5,
+            delay: delayWithUs,
         }
 }
 }

@@ -50,11 +50,11 @@ export default function AboutUs({text}: aboutUs) {
     return (
         <motion.div initial="hidden" whileInView="show" variants={{}} id="section-aboutUs" className={styles.container}>
 
-            <motion.div variants={textContainerVarients} className={styles.animation_object}></motion.div>
+                <motion.div variants={textContainerVarients} className={styles.animation_object}></motion.div>
 
-            <motion.div variants={{show: {transition: {staggerChildren: .05}}}} className={styles.text_container}>
-                {words}
-            </motion.div>
+                <motion.div variants={{show: {transition: {staggerChildren: .05}}}} className={styles.text_container}>
+                    {words}
+                </motion.div>
 
         </motion.div>
     )
