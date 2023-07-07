@@ -1,23 +1,24 @@
-import clientPromise from '@/app/lib/mongodb/mongoClient'
-import { MongoClient, WithId } from 'mongodb'
-import { NextResponse } from 'next/server';
-import next from 'next/types';
-import { Result } from 'postcss';
+// import clientPromise from '@/app/lib/mongodb/mongoClient'
+// import { NextResponse } from 'next/server';
 
+// let client;
+// let db;
+// let sites;
 
+// export async function GET(){
+//     try {
 
-export async function GET(){
-    try {
-
-        const client = await clientPromise;
-        const db =  client.db("Work");
-        var sites =  await db.collection("Work").find({}).next();
+//         client = await clientPromise;
+//         db =  client.db("Work");
+//         sites =  await db.collection("Work").find({}).toArray();
         
-    } catch (error) {
-        throw new Error("Failed to establish connection to the database")
-    }
+//     } catch (error) {
+//         throw new Error("Failed to establish connection to the database")
+//     }
 
 
-    return NextResponse.json(sites)
+//     return NextResponse.json( sites )
     
-}
+// }
+
+export {}

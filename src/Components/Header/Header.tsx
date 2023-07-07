@@ -35,13 +35,15 @@ export default function Header() {
 
                 <div className={styles.header_top}>
                     <div className={styles.logo}>
-                        <Image src="/.././public/Logo.jpg" alt="Our Logo" fill={true} className={styles.logo} />
+                      
+                        <Image src="/images/logo.jpg" alt="Our Logo" fill={true} className={styles.logo} />
+
                     </div>
 
                     <nav className={styles.navBar}>
-                        <HeaderButton text="Our Work" scrollId="section-ourWork"></HeaderButton>
+                        <HeaderButton text="About us" scrollId="section-aboutUs"></HeaderButton>
                         <HeaderButton text="Skills" scrollId="section-skills"></HeaderButton>
-                        <HeaderButton text="Portfolio" scrollId="section-portfolio"></HeaderButton>
+                        <HeaderButton text="Our Work" scrollId="section-ourWork"></HeaderButton>
                         <HeaderButton text="Contact" scrollId="section-contact"></HeaderButton>
                     </nav>
                 </div>

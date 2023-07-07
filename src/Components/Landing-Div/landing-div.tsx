@@ -4,7 +4,7 @@ import styles from "./landing-div.module.css"
 import { ReactNode } from "react"
 import { easeInOut, motion } from "framer-motion"
 
-import Header from "@/Header/Header"
+import Header from "@/Components/Header/Header"
 
 const container = {
     show: {
