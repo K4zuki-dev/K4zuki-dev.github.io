@@ -1,0 +1,21 @@
+.button {
+    border-radius: 100%;
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    left: 90%;
+    top: 90%;
+    background-color: rgba(255, 255, 255, 0.185);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.svg_container {
+    padding: 1em;
+}

@@ -1,4 +1,4 @@
-import clientPromise from "@/app/lib/mongodb/mongoClient";
+// import clientPromise from "@/app/lib/mongodb/mongoClient";
 import { NextResponse } from "next/server";
 
 let client;
@@ -6,7 +6,7 @@ let db;
 let sites;
 
 export async function GET() {
-  try {
+  /* try {
 
     client = await clientPromise;
     db = client.db("Work");
@@ -15,9 +15,12 @@ export async function GET() {
   } catch (error) {
     
     throw new Error("Failed to establish connection to the database");
-  }
 
-  return NextResponse.json(sites);
+  } 
+
+  return NextResponse.json(sites) ; */
+
+
+  // remove this if u want the old response back, this is hardcoded
+  return NextResponse.json([{title: "Portfolio", description:"lalalal", image: "test"}, {title: "Test", description:"lalalaldsfh", image: "tesniggert"}])
 }
-
-export {};

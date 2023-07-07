@@ -3,3 +3,7 @@ type ourWork = {
     description:string,
     image:string
 }
+
+type aboutUs = {
+    text: string
+}

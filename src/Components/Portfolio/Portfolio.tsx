@@ -1,9 +1,9 @@
-"use client";
+/* eslint-disable @next/next/no-async-client-component */
+"use client"
 
-import { easeInOut, easeOut, motion } from "framer-motion";
+import { easeOut, motion } from "framer-motion";
 import { ReactNode } from "react";
 import styles from "./Portfolio.module.css";
-import { relative } from "path";
 import Image from "next/image";
 
 const container = {
@@ -62,6 +62,7 @@ const imageFade = {
 };
 
 export default async function Portfolio() {
+
   async function getData() {
     const res = await fetch("http://localhost:3000/api/sites", {
       method: "GET",
@@ -70,6 +71,7 @@ export default async function Portfolio() {
       },
     });
     const data: ourWork[] = await res.json();
+
     return data;
   }
 
@@ -79,27 +81,35 @@ export default async function Portfolio() {
     const paginatedWork: ReactNode[] = unpaginatedData.map((Site) => {
       return (
         <div key={Site.title} className={styles.wrapper}>
-
           <motion.h1 variants={leftToRight} style={{ position: "relative" }}>
             {Site.title}
           </motion.h1>
 
-          <motion.div variants={imageFade} initial="hidden" whileInView="show" className={styles.imageGap} >
-            <Image src="/images/image.png" fill={true} alt="hi" className={styles.image}></Image>
+          <motion.div
+            variants={imageFade}
+            initial="hidden"
+            whileInView="show"
+            className={styles.image_container}
+          >
+              <Image
+                src="/images/image.png"
+                fill={true}
+                alt="hi"
+                className={styles.portfolio_image}
+                sizes="10em"
+              ></Image>
+
           </motion.div>
 
           <motion.p variants={rightToLeft} style={{ position: "relative" }}>
             {Site.description}
           </motion.p>
-
         </div>
       );
     });
 
     return paginatedWork;
   }
-
-  const elem = await Pagination();
 
   return (
     <motion.div
@@ -109,7 +119,7 @@ export default async function Portfolio() {
       className={styles.portfolio_container}
       id="section-portfolio"
     >
-      {elem}
+      {await Pagination()}
     </motion.div>
   );
 }
