@@ -1,4 +1,4 @@
-import styles from "./workComponent.module.css"
+import styles from "./Portfolio.module.css"
 
 export default function OurWork() {
     return (
