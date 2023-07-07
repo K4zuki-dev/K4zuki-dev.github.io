@@ -43,7 +43,7 @@ export default function Header() {
                     <nav className={styles.navBar}>
                         <HeaderButton text="About us" scrollId="section-aboutUs"></HeaderButton>
                         <HeaderButton text="Skills" scrollId="section-skills"></HeaderButton>
-                        <HeaderButton text="Our Work" scrollId="section-ourWork"></HeaderButton>
+                        <HeaderButton text="Portfolio" scrollId="section-portfolio"></HeaderButton>
                         <HeaderButton text="Contact" scrollId="section-contact"></HeaderButton>
                     </nav>
                 </div>

@@ -1,24 +1,23 @@
-// import clientPromise from '@/app/lib/mongodb/mongoClient'
-// import { NextResponse } from 'next/server';
+import clientPromise from "@/app/lib/mongodb/mongoClient";
+import { NextResponse } from "next/server";
 
-// let client;
-// let db;
-// let sites;
+let client;
+let db;
+let sites;
 
-// export async function GET(){
-//     try {
+export async function GET() {
+  try {
 
-//         client = await clientPromise;
-//         db =  client.db("Work");
-//         sites =  await db.collection("Work").find({}).toArray();
-        
-//     } catch (error) {
-//         throw new Error("Failed to establish connection to the database")
-//     }
+    client = await clientPromise;
+    db = client.db("Work");
+    sites = await db.collection("Work").find({}).toArray();
 
-
-//     return NextResponse.json( sites )
+  } catch (error) {
     
-// }
+    throw new Error("Failed to establish connection to the database");
+  }
 
-export {}
+  return NextResponse.json(sites);
+}
+
+export {};
