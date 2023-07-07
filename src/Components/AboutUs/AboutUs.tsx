@@ -3,7 +3,7 @@
 import styles from "./AboutUs.module.css"
 import { easeInOut, motion } from "framer-motion"
 
-const textVarients = {
+const textVariants = {
     hidden: {
         opacity: 0, 
         left: "1em"
@@ -18,7 +18,7 @@ const textVarients = {
     }
 }
 
-const textContainerVarients = {
+const textContainerVariants = {
     show: {
         width: ["0%", "100%"], 
         height: ["0%", "100%"],
@@ -38,22 +38,60 @@ const textContainerVarients = {
     }
 }
 
+const titleVariants = {
+    show: {
+        scaleY: 1,
+        transition: {
+            duration: 1
+        }
+    },
+
+    hidden: {
+        scaleY: 0,
+    }
+}
+
+const textStaggerVariants = {
+    show: {transition: {staggerChildren: .03}}
+}
+
 export default function AboutUs({text}: aboutUs) {
 
+
     const phrase = text
-    const words = phrase.split(" ").map((char, index) => {
+    const title = "About us"
+
+    const textWords = phrase.split(" ").map((char, index) => {
         return (
-            <motion.h1 className={styles.text} variants={textVarients} style={{position: "relative", marginRight: ".4em"}} key={index}>{char}</motion.h1>
+            <motion.h2 className={styles.text} variants={textVariants} style={{position: "relative", marginRight: ".4em"}} key={index}>{char}</motion.h2>
         )
     })
 
+    const titleWords = title.split(" ").map((char, index) => {
+            return (
+                <motion.h1 className={styles.text} variants={textVariants} style={{position: "relative", marginRight: ".4em"}} key={index}>{char}</motion.h1>
+            )
+        })
+
+
     return (
-        <motion.div initial="hidden" whileInView="show" variants={{}} id="section-aboutUs" className={styles.container}>
+        <motion.div initial="hidden" whileInView="show" variants={{show: {transition: {staggerChildren: 1}}}} id="section-aboutUs" className={styles.container}>
 
-                <motion.div variants={textContainerVarients} className={styles.animation_object}></motion.div>
+                <motion.div variants={textContainerVariants} className={styles.animation_object}></motion.div>
 
-                <motion.div variants={{show: {transition: {staggerChildren: .05}}}} className={styles.text_container}>
-                    {words}
+                <motion.div variants={textStaggerVariants} className={styles.title}>
+                    {titleWords}
+                </motion.div>
+
+                <motion.div className={styles.we_are}>
+                    <h1>We are </h1>
+                    <motion.div>
+                        <motion.h1>Full-stack developers</motion.h1>
+                    </motion.div>
+                </motion.div>
+
+                <motion.div variants={textStaggerVariants} className={styles.text_container}>
+                    {textWords}
                 </motion.div>
 
         </motion.div>

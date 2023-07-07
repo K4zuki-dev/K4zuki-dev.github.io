@@ -1,13 +1,17 @@
 .container {
-    height: 100vh;
-    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+    max-width: 100vw;
     color: white;
 
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
 
     background-color: rgb(10, 10, 10);
+
+    font-size: 100%;
 }
 
 
@@ -18,18 +22,51 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    font-size: 150%;
     z-index: 1;
 }
 
 .animation_object {
     z-index: 0;
     position: absolute;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    width: 100%;
-    height: 100%;
+
+    width: 10;
+    height: 300px;
 
     background-color: black;
+}
+
+.title {
+    padding-left: 2em;
+    padding-right: 2em;
+    transform-origin: bottom;
+    color: purple;
+    transform: scaleY(1);
+    text-align: left;
+
+    display: flex;
+
+    font-size: 150%;
+
+    z-index: 1;
+}
+
+.we_are {
+    display: flex;
+    justify-content: center;
+
+    gap: 1em;
+    width: 100%;
+    color: aqua;
+    font-weight: bold;
+    z-index: 1;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+@media (max-width: 700px) {
+    .container {
+        height: fit-content;
+        min-height: fit-content;
+        font-size: 2vw;
+    }
 }

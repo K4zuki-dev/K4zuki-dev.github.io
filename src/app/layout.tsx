@@ -9,7 +9,12 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Website',
   description: 'Explore our ambitions',
-  innerWidth: "device-width"
+  innerWidth: "device-width",
+  viewport: {
+      width: 'device-width',
+      initialScale: 1,
+      maximumScale: 1,
+  }
 }
 
 export default function RootLayout({children,}: {children: React.ReactNode}) {

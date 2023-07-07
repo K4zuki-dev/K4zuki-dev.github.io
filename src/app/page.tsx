@@ -3,7 +3,6 @@ import Portfolio from "@/Components/Portfolio/Portfolio";
 import Contact from "@/Components/Contact/Contact";
 import AboutUs from "@/Components/AboutUs/AboutUs";
 import Skills from "@/Components/Skills/Skills"
-import StartButton from "@/Components/StartButton/StartButton";
 
 export default function Main() {
 
@@ -12,8 +11,7 @@ export default function Main() {
     return (
       <>
         <Landing></Landing>
-
-        <StartButton></StartButton>
+        
         <AboutUs text={aboutus}></AboutUs>
         <Skills></Skills>
         <Portfolio></Portfolio>
