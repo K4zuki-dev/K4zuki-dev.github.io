@@ -1,3 +1,4 @@
+'use client'
 import Landing from "@/Components/Landing-Div/landing-div";
 import Portfolio from "@/Components/Portfolio/Portfolio";
 import Contact from "@/Components/Contact/Contact";

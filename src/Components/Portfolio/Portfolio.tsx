@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-async-client-component */
-"use client"
 
 import { easeOut, motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import styles from "./Portfolio.module.css";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const container = {
   show: {
@@ -60,57 +60,65 @@ const imageFade = {
     opacity: 0,
   },
 };
+async function getData() {
+  const res = await fetch("http://localhost:3000/api/sites", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data: ourWork[] = await res.json();
 
-export default async function Portfolio() {
+  return data;
+} 
+function Pagination(data:ourWork[]) {
 
-  async function getData() {
-    const res = await fetch("http://localhost:3000/api/sites", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application-json",
-      },
-    });
-    const data: ourWork[] = await res.json();
+  const paginatedWork: ReactNode[] = data.map((Site) => {
+    return (
+      <div key={Site.title} className={styles.wrapper}>
+        <motion.h1 variants={leftToRight} style={{ position: "relative" }}>
+          {Site.title}
+        </motion.h1>
 
-    return data;
-  }
+        <motion.div
+          variants={imageFade}
+          initial="hidden"
+          whileInView="show"
+          className={styles.image_container}
+        >
+            <Image
+              src="/images/image.png"
+              fill={true}
+              alt="hi"
+              className={styles.portfolio_image}
+              sizes="10em"
+            ></Image>
 
-  async function Pagination() {
-    const unpaginatedData = await getData();
+        </motion.div>
 
-    const paginatedWork: ReactNode[] = unpaginatedData.map((Site) => {
-      return (
-        <div key={Site.title} className={styles.wrapper}>
-          <motion.h1 variants={leftToRight} style={{ position: "relative" }}>
-            {Site.title}
-          </motion.h1>
+        <motion.p variants={rightToLeft} style={{ position: "relative" }}>
+          {Site.description}
+        </motion.p>
+      </div>
+    );
+  });
 
-          <motion.div
-            variants={imageFade}
-            initial="hidden"
-            whileInView="show"
-            className={styles.image_container}
-          >
-              <Image
-                src="/images/image.png"
-                fill={true}
-                alt="hi"
-                className={styles.portfolio_image}
-                sizes="10em"
-              ></Image>
+  return paginatedWork ;
+}
 
-          </motion.div>
+export default function Portfolio() {
+  const [data,setData] = useState<ourWork[]>([]);
+  
+  useEffect(() => {
+    async function fetchAndSetData() {
+       const data = await getData();
+       setData(data);
+    }
+    
+   fetchAndSetData()
 
-          <motion.p variants={rightToLeft} style={{ position: "relative" }}>
-            {Site.description}
-          </motion.p>
-        </div>
-      );
-    });
-
-    return paginatedWork;
-  }
-
+ }, []);
+ 
   return (
     <motion.div
       initial="hidden"
@@ -119,7 +127,7 @@ export default async function Portfolio() {
       className={styles.portfolio_container}
       id="section-portfolio"
     >
-      {await Pagination()}
+      {Pagination(data)}
     </motion.div>
   );
 }
