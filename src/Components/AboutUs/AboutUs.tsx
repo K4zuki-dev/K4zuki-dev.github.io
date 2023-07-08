@@ -21,7 +21,7 @@ const textVariants = {
 const textContainerVariants = {
     show: {
         width: ["0%", "100%"], 
-        height: ["0%", "100%"],
+        height: ["0vh", "100vh"],
         borderRadius: ["100%", "0%"],
         transition: {
             delay: 0,

@@ -5,6 +5,8 @@ body {
 }
 
 body, html {
+  position: relative;
+  overflow-x: clip;
   margin: 0;
   padding: 0;
   width: 100%;
