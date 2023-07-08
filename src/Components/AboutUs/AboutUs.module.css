@@ -42,6 +42,8 @@
     transform: scaleY(1);
     text-align: left;
 
+    width: 50%;
+
     display: flex;
 
     font-size: 150%;
@@ -51,20 +53,37 @@
 
 .we_are {
     display: flex;
-    justify-content: center;
+    justify-content: left;
 
-    gap: 1em;
+    position: relative;
+
+    padding-left: 2em;
+    padding-right: 2em;
+
+    gap: .5em;
     width: 100%;
     color: aqua;
     font-weight: bold;
     z-index: 1;
-    padding-left: 2em;
-    padding-right: 2em;
+
+    font-size: 150%;
+    white-space: nowrap;
+
+}
+
+.we_are_h1 {
+    width: auto;
+    position: "relative";
+    text-align: "left"
 }
 
 @media (max-width: 600px) {
     .container {
         height: 100vh;
-        font-size: 2.5vw;
+        font-size: 2.7vw;
+    }
+
+    .we_are_h1 {
+        width: 80%;
     }
 }
