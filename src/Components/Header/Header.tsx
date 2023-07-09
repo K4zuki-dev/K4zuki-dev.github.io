@@ -27,10 +27,6 @@ const buttonVarients: Variants = {
 export default function Header() {
     const {scrollYProgress} = useScroll()
 
-    const opacity = useTransform(scrollYProgress, [0, 100], [0, 1])// Adjust the scroll range and opacity values as needed
-    console.log(opacity)
-
-
     return (
         <>
             <header className={styles.header} style={{}}>
