@@ -1,13 +1,8 @@
-import { useState } from "react"
 import styles from "./Header.module.css"
 import Image from "next/image"
 
 import { easeOut, motion, useScroll } from "framer-motion"
 
-type NavButton = {
-    text: string,
-    scrollId: string,
-}
 
 const buttonVarients = {
     hidden: {

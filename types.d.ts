@@ -23,3 +23,8 @@ type mongoContact = {
     email: string,
     content: string
 }
+
+type NavButton = {
+    text: string,
+    scrollId: string,
+}
