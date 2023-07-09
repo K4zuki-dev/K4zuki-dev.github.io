@@ -1,9 +1,9 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Kanit, Roboto_Mono } from 'next/font/google'
 
 import Footer from '@/Components/Footer/Footer'
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Kanit({weight: "400", subsets: ['latin'] })
 
 export const metadata = {
   title: 'Website',
@@ -20,7 +20,7 @@ export default function RootLayout({children,}: {children: React.ReactNode}) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={font.className}>
             {children}
             <Footer></Footer>
         </body>

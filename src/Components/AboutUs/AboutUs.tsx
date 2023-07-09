@@ -1,99 +1,217 @@
-"use client"
+/* eslint-disable react-hooks/exhaustive-deps */
+"use client";
 
-import styles from "./AboutUs.module.css"
-import { easeInOut, motion } from "framer-motion"
+import { useEffect, useRef } from "react";
+import styles from "./AboutUs.module.css";
+import {
+  easeInOut,
+  motion,
+  useAnimation,
+  useCycle,
+  useInView,
+} from "framer-motion";
+
+import {Variants} from "framer-motion"
+
 
 const textVariants = {
-    hidden: {
-        opacity: 0, 
-        left: "1em"
-    },
+  hidden: {
+    opacity: 0,
+    left: "1em",
+  },
 
-    show: {
-        opacity: 1, 
-        left: "0em", 
-        transition: {
-            duration: .2
-        }
-    }
-}
-
-const textContainerVariants = {
-    show: {
-        width: ["0%", "100%"], 
-        height: ["0vh", "100vh"],
-        borderRadius: ["100%", "0%"],
-        transition: {
-            delay: 0,
-            duration: .6,
-            type: "tween",
-            stiffeness: 100,
-            ease: easeInOut
-        }
+  show: {
+    opacity: 1,
+    left: "0em",
+    transition: {
+      duration: 0.2,
     },
-    hidden: {
-        width: "0",
-        height: "0",
-        borderRadius: "0%",
-    }
-}
+  },
+};
+
+const backgroundVariants = {
+  show: {
+    scaleY: 0,
+    transition: {
+      delay: 0,
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+  },
+  hidden: {
+    scaleY: 1
+  },
+};
 
 const titleVariants = {
-    show: {
-        scaleY: 1,
-        transition: {
-            duration: 1
-        }
+  show: {
+    scaleY: 1,
+    transition: {
+      duration: 1,
     },
+  },
 
-    hidden: {
-        scaleY: 0,
+  hidden: {
+    scaleY: 0,
+  },
+};
+const sliderVarients = {
+  show: {
+    scaleX: [0, 1.1, 0],
+    transformOrigin: "left",
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
+    },
+  },
+
+  hidden: {
+    scaleX: 0,
+    transformOrigin: "left"
+  },
+};
+
+export default function AboutUs({ text }: aboutUs) {
+  const sliderAnim = useAnimation();
+  const ContainerAnim = useAnimation();
+  const textAnim = useAnimation();
+
+  const letterWidth = 72
+  let textLetters: number = 1
+
+  const ContainerRef = useRef(null);
+  const textRef = useRef(null)
+
+  const textinView = useInView(textRef)
+  const ContainerInView = useInView(ContainerRef, { once: true });
+
+  const [curText, cycleCurText] = useCycle(
+    "Programmers",
+    "Fullstack Devs",
+    "Sleep drained"
+  );
+    // U may add words here, or delete some if you want, those are the ones being switched through
+
+
+  // Fires when the actual text is in view
+  useEffect(() => {
+    textAnim.start("show")
+  }, [textinView])
+
+  // Fires when the container is in view
+  useEffect(() => {
+    if (ContainerInView) {
+      ContainerAnim.start("show");
     }
-}
-
-const textStaggerVariants = {
-    show: {transition: {staggerChildren: .03}}
-}
-
-export default function AboutUs({text}: aboutUs) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ContainerInView]);
 
 
-    const phrase = text
-    const title = "About us"
+  // Fires when text rotates
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    textLetters = curText.split("").length
 
-    const textWords = phrase.split(" ").map((char, index) => {
-        return (
-            <motion.h2 className={styles.text} variants={textVariants} style={{position: "relative", marginRight: ".4em"}} key={index}>{char}</motion.h2>
-        )
-    })
-
-    const titleWords = title.split(" ").map((char, index) => {
-            return (
-                <motion.h1 className={styles.text} variants={textVariants} style={{position: "relative", marginRight: ".4em"}} key={index}>{char}</motion.h1>
-            )
-        })
+    setTimeout(() => {
+      sliderAnim.start("show");
+      setTimeout(cycleCurText, 600);
 
 
+
+    }, 4000);
+  }, [curText]);
+
+  const phrase = text;
+  const title = "About us";
+
+  const textWords = phrase.split(" ").map((char, index) => {
     return (
-        <motion.div initial="hidden" whileInView="show" variants={{show: {transition: {staggerChildren: 1}}}} id="section-aboutUs" className={styles.container}>
+      <motion.h2
+        className={styles.text}
+        variants={textVariants}
+        style={{ position: "relative", marginRight: ".4em" }}
+        key={index}
+      >
+        {char}
+      </motion.h2>
+    );
+  });
 
-                <motion.div variants={textContainerVariants} className={styles.animation_object}></motion.div>
+  const titleWords = title.split(" ").map((char, index) => {
+    return (
+      <motion.h1
+        className={styles.text}
+        variants={textVariants}
+        style={{ position: "relative", marginRight: ".4em" }}
+        key={index}
+      >
+        {char}
+      </motion.h1>
+    );
+  });
 
-                <motion.div variants={textStaggerVariants} className={styles.title}>
-                    {titleWords}
-                </motion.div>
+  return (
+    <motion.div
+      ref={ContainerRef}
+      animate="show"
+      variants={{}}
+      id="section-aboutUs"
+      className={styles.container}
+    >
 
-                <motion.div className={styles.we_are}>
-                    <h1>We are </h1>
-                    <motion.div>
-                        <motion.h1>Full-stack developers</motion.h1>
-                    </motion.div>
-                </motion.div>
+      <motion.div
+        ref={textRef}
+        variants={backgroundVariants}
+        className={styles.animation_object}
+      ></motion.div>
 
-                <motion.div variants={textStaggerVariants} className={styles.text_container}>
-                    {textWords}
-                </motion.div>
 
+     <div style={{zIndex: 1, display: "flex", justifyContent: "center", alignItems: "center", width: "100%"}}>
+        <motion.div className={styles.we_are}>
+            <h1 style={{ width: "fit-content", textAlign: "right"}}>We are </h1>
+
+            <motion.h1
+            initial="hidden"
+            animate={sliderAnim}
+            variants={{ show: { transition: { staggerChildren: 0.2 } } }}
+            style={{position: "relative", textAlign: "left"}}
+            className={styles.we_are_h1}
+            >
+            {curText}
+
+                <motion.div
+                    variants={sliderVarients}
+                    style={{
+                    position: "absolute",
+                    width: `${letterWidth*textLetters}px`,
+                    height: "100%",
+                    backgroundColor: "purple",
+                    top: 0,
+                    }}
+                ></motion.div>
+
+                <motion.div
+                    variants={sliderVarients}
+                    style={{
+                    position: "absolute",
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "blue",
+                    top: 0,
+                    }}
+                ></motion.div>
+            </motion.h1>
         </motion.div>
-    )
+     </div>
+
+      <motion.div
+        initial="hidden"
+        animate={textAnim}
+        variants={{ show: { transition: { staggerChildren: 0.03 } } }}
+        className={styles.text_container}
+      >
+        {textWords}
+      </motion.div>
+    </motion.div>
+  );
 }
