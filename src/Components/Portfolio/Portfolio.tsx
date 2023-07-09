@@ -61,7 +61,7 @@ const imageFade = {
   },
 };
 async function getData() {
-  const res = await fetch("https://https://k4zuki-dev.github.io/api/sites", {
+  const res = await fetch("https://k4zuki-dev.github.io/api/sites", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
