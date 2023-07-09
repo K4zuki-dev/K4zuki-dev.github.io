@@ -1,23 +1,19 @@
-import { headers} from "next/headers"
-import { NextResponse } from "next/server"
-import clientPromise from "@/app/lib/mongodb/mongoClient"
-
-let client
-let db
-let result
+import { NextResponse } from "next/server";
+import app from "@/app/lib/firebase/fireClient";
+import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
 
 export async function POST(req: Request) {
-    const data: mongoContact = await req.json()
-    
-    try {
-        client = await clientPromise;
-        db = client.db("Work");
-        await db.collection("Contacts").insertOne(data)
+  try {
+    const db = getFirestore(app);
+    const collectionRef = collection(db, "Contacts");
+    const reqBody: dbContact = await req.json();
 
-        return NextResponse.json({status: "200"})
+    await addDoc(collectionRef, reqBody);
 
-    }   catch (error) {
-            throw new Error("Failed to establish connection to the database. Status code: 424");
-        } 
-
+    return NextResponse.json({ status: 200 });
+  } catch (error) {
+    throw new Error(
+      "Failed to establish connection to the database. Status code: 424"
+    );
+  }
 }
