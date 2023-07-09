@@ -4,7 +4,7 @@ import styles from "./Header.module.css"
 import Image from "next/image"
 
 import { Variants, easeOut, motion, useScroll, useTransform } from "framer-motion"
-import { NavButton } from "../../../types"
+
 
 
 const buttonVarients: Variants = {

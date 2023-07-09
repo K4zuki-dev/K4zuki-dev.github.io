@@ -1,11 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {  useRef, useState, useEffect } from "react"
 import { useHover } from "usehooks-ts"
-
 import Image from "next/image"
 import styles from "./Contact.module.css"
 import { Variants, motion, useAnimation } from "framer-motion"
-import { contactForm } from "../../../types"
 
 
 export default function Contact() {

@@ -1,18 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useEffect, useRef, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./AboutUs.module.css";
-import {
-  motion,
-  useAnimation,
-  useCycle,
-  useInView,
-} from "framer-motion";
-
-import {Variants} from "framer-motion"
-import { aboutUs } from "../../../types";
-
+import { motion, useAnimation, useCycle, useInView } from "framer-motion";
+import { Variants } from "framer-motion";
 
 const textVariants: Variants = {
   hidden: {
@@ -33,13 +25,13 @@ const backgroundVariants: Variants = {
   show: {
     scaleY: 0,
     transition: {
-      delay: .5,
+      delay: 0.5,
       duration: 0.6,
       ease: "easeInOut",
     },
   },
   hidden: {
-    scaleY: 1
+    scaleY: 1,
   },
 };
 
@@ -64,12 +56,12 @@ const sliderVarients: Variants = {
 
   hiddenRight: {
     left: "100%",
-    right: "0%"
+    right: "0%",
   },
   hiddenLeft: {
     left: "0%",
-    right: "100%"
-  }
+    right: "100%",
+  },
 };
 
 export default function AboutUs({ text }: aboutUs) {
@@ -77,59 +69,67 @@ export default function AboutUs({ text }: aboutUs) {
   const ContainerAnim = useAnimation(); // The container getting smaller
   const textAnim = useAnimation(); // Text
 
-  const containerRef = useRef(null)
+  const containerRef = useRef(null);
 
-  const textRef = useRef(null)
-  const textinView = useInView(textRef)
+  const textRef = useRef(null);
+  const textinView = useInView(textRef);
 
   // U may add words here, or delete some if you want, those are the ones being switched through
 
-  const words: string[] = ["Programmers", "Creating sites", "Sleep drained", "Working hard"]
+  const words: string[] = [
+    "Programmers",
+    "Creating sites",
+    "Sleep drained",
+    "Working hard",
+  ];
   const [curText, cycleCurText] = useCycle(...words);
 
-
   // Calculating the width of the longest word:
-  const [longestWordWidth, setLongestWordWidth] = useState(0)
-  
+  const [longestWordWidth, setLongestWordWidth] = useState(0);
+
   useEffect(() => {
-    const words = ['programming', 'web', 'developing', 'fullstack', 'developers'];
+    const words = [
+      "programming",
+      "web",
+      "developing",
+      "fullstack",
+      "developers",
+    ];
     let maxWidth = 0;
 
     // Calculate the width of each word and find the maximum width
     words.forEach((word) => {
       const wordWidth = getTextWidth(word);
-      maxWidth = Math.max(maxWidth, wordWidth)
+      maxWidth = Math.max(maxWidth, wordWidth);
     });
 
     setLongestWordWidth(maxWidth);
   }, []);
 
   function getTextWidth(text: string) {
-    const maxLetterWidth = 30
-    const wordWidth: number = (text.split("").length) * maxLetterWidth
-    
-    return wordWidth
+    const maxLetterWidth = 30;
+    const wordWidth: number = text.split("").length * maxLetterWidth;
+
+    return wordWidth;
   }
 
   // Fires when the actual text is in view
   useEffect(() => {
     if (textinView) {
-      textAnim.start("show")
-      ContainerAnim.start("show")
+      textAnim.start("show");
+      ContainerAnim.start("show");
     } else {
-      ContainerAnim.set("hidden")
+      ContainerAnim.set("hidden");
     }
-  }, [textinView])
+  }, [textinView]);
 
   // Fires when text rotates
   useEffect(() => {
-
     setTimeout(async () => {
-      sliderAnim.set("hiddenRight")
-      sliderAnim.start("rightToLeft")
+      sliderAnim.set("hiddenRight");
+      sliderAnim.start("rightToLeft");
       setTimeout(cycleCurText, 600);
-    }, 4000)
-
+    }, 4000);
   }, [curText]);
 
   const phrase = text;
@@ -162,11 +162,7 @@ export default function AboutUs({ text }: aboutUs) {
   });
 
   return (
-    <motion.div
-      id="section-aboutUs"
-      className={styles.container}
-    >
-
+    <motion.div id="section-aboutUs" className={styles.container}>
       <motion.div
         ref={containerRef}
         animate={ContainerAnim}
@@ -174,26 +170,32 @@ export default function AboutUs({ text }: aboutUs) {
         className={styles.animation_object}
       ></motion.div>
 
-
-     <div style={{zIndex: 1, display: "flex", justifyContent: "center", alignItems: "center", width: "100%"}}>
+      <div
+        style={{
+          zIndex: 1,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
         <motion.div className={styles.we_are}>
-            <h1 style={{ width: "fit-content", textAlign: "right"}}>We are </h1>
+          <h1 style={{ width: "fit-content", textAlign: "right" }}>We are </h1>
 
-            <motion.h1
-              animate={sliderAnim}
-              className={styles.slider_container}
-              style={{width: longestWordWidth}}
-            >
+          <motion.h1
+            animate={sliderAnim}
+            className={styles.slider_container}
+            style={{ width: longestWordWidth }}
+          >
             {curText}
 
-                <motion.div
-                    variants={sliderVarients}
-                    className={styles.slider_1}
-                ></motion.div>
-
-            </motion.h1>
+            <motion.div
+              variants={sliderVarients}
+              className={styles.slider_1}
+            ></motion.div>
+          </motion.h1>
         </motion.div>
-     </div>
+      </div>
 
       <motion.div
         ref={textRef}
