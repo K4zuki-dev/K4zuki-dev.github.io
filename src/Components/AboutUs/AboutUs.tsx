@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useEffect, useRef } from "react";
@@ -5,11 +6,13 @@ import styles from "./AboutUs.module.css";
 import {
   easeInOut,
   motion,
-  stagger,
   useAnimation,
   useCycle,
   useInView,
 } from "framer-motion";
+
+import {Variants} from "framer-motion"
+
 
 const textVariants = {
   hidden: {
@@ -26,23 +29,17 @@ const textVariants = {
   },
 };
 
-const textContainerVariants = {
+const backgroundVariants = {
   show: {
-    width: ["0%", "100%"],
-    height: ["0vh", "100vh"],
-    borderRadius: ["100%", "0%"],
+    scaleY: 0,
     transition: {
       delay: 0,
       duration: 0.6,
-      type: "tween",
-      stiffeness: 100,
-      ease: easeInOut,
+      ease: "easeInOut",
     },
   },
   hidden: {
-    width: "0",
-    height: "0",
-    borderRadius: "0%",
+    scaleY: 1
   },
 };
 
@@ -70,18 +67,23 @@ const sliderVarients = {
 
   hidden: {
     scaleX: 0,
+    transformOrigin: "left"
   },
 };
 
 export default function AboutUs({ text }: aboutUs) {
   const sliderAnim = useAnimation();
+  const ContainerAnim = useAnimation();
   const textAnim = useAnimation();
 
   const letterWidth = 72
   let textLetters: number = 1
 
-  const textRef = useRef(null);
-  const textInView = useInView(textRef, { once: true });
+  const ContainerRef = useRef(null);
+  const textRef = useRef(null)
+
+  const textinView = useInView(textRef)
+  const ContainerInView = useInView(ContainerRef, { once: true });
 
   const [curText, cycleCurText] = useCycle(
     "Programmers",
@@ -91,14 +93,21 @@ export default function AboutUs({ text }: aboutUs) {
     // U may add words here, or delete some if you want, those are the ones being switched through
 
 
-
+  // Fires when the actual text is in view
   useEffect(() => {
-    if (textInView) {
-      textAnim.start("show");
+    textAnim.start("show")
+  }, [textinView])
+
+  // Fires when the container is in view
+  useEffect(() => {
+    if (ContainerInView) {
+      ContainerAnim.start("show");
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [textInView]);
+  }, [ContainerInView]);
 
+
+  // Fires when text rotates
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     textLetters = curText.split("").length
@@ -143,16 +152,19 @@ export default function AboutUs({ text }: aboutUs) {
 
   return (
     <motion.div
-      ref={textRef}
+      ref={ContainerRef}
       animate="show"
       variants={{}}
       id="section-aboutUs"
       className={styles.container}
     >
+
       <motion.div
-        variants={textContainerVariants}
+        ref={textRef}
+        variants={backgroundVariants}
         className={styles.animation_object}
       ></motion.div>
+
 
      <div style={{zIndex: 1, display: "flex", justifyContent: "center", alignItems: "center", width: "100%"}}>
         <motion.div className={styles.we_are}>
