@@ -118,7 +118,7 @@ function Form() {
 
     // Shows the button
 
-    async function showAnim() {
+    function showAnim() {
         if (!loading) {
             buttonAnim.set("hidden")
             buttonAnim.start("show")
@@ -165,7 +165,6 @@ function Form() {
         // Submiting The form to the API
 
         if (!invalidation) {
-            console.log("Submited!")
             const res = await fetch("http://localhost:3000/api/addContact", {
                 method: "POST",
                 body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
@@ -235,9 +234,9 @@ function Form() {
     return (
         <div className={styles.form}>
             
-            <form className={styles.form_wrapper}>
+            <div className={styles.form_wrapper}>
 
-            <h1 style={{borderBottom: "1px solid var(--clr-text)", width: "100%"}}>Contact us:</h1>
+                <h1 style={{borderBottom: "1px solid var(--clr-text)", width: "100%"}}>Contact us:</h1>
 
 
                 <Input required={true}>
@@ -273,7 +272,7 @@ function Form() {
                 <motion.p ref={validRef} initial="hidden" variants={errorVariants} animate={validAnim} style={{color: "green"}}>Successfully submitted!</motion.p>
                 {/* Here we are using Variants "ErrorVariants" for both, because they do the same thing, show / dont show */}
 
-            </form>
+            </div>
 
             <div className={styles.contact_information}>
                     <h1 style={{borderBottom: "1px solid var(--clr-text)", width: "100%"}}>Information: </h1>
