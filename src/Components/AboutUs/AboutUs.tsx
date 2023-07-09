@@ -1,10 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState} from "react";
 import styles from "./AboutUs.module.css";
 import {
-  easeInOut,
   motion,
   useAnimation,
   useCycle,
@@ -14,7 +13,7 @@ import {
 import {Variants} from "framer-motion"
 
 
-const textVariants = {
+const textVariants: Variants = {
   hidden: {
     opacity: 0,
     left: "1em",
@@ -29,11 +28,11 @@ const textVariants = {
   },
 };
 
-const backgroundVariants = {
+const backgroundVariants: Variants = {
   show: {
     scaleY: 0,
     transition: {
-      delay: 0,
+      delay: .5,
       duration: 0.6,
       ease: "easeInOut",
     },
@@ -43,82 +42,94 @@ const backgroundVariants = {
   },
 };
 
-const titleVariants = {
-  show: {
-    scaleY: 1,
+const sliderVarients: Variants = {
+  rightToLeft: {
+    left: "-100%",
+    right: "0%",
     transition: {
-      duration: 1,
+      ease: "easeInOut",
+      duration: 1.3,
     },
   },
 
-  hidden: {
-    scaleY: 0,
-  },
-};
-const sliderVarients = {
-  show: {
-    scaleX: [0, 1.1, 0],
-    transformOrigin: "left",
+  leftToRight: {
+    left: "0%",
+    right: "-100%",
     transition: {
       ease: "easeInOut",
       duration: 1,
     },
   },
 
-  hidden: {
-    scaleX: 0,
-    transformOrigin: "left"
+  hiddenRight: {
+    left: "100%",
+    right: "0%"
   },
+  hiddenLeft: {
+    left: "0%",
+    right: "100%"
+  }
 };
 
 export default function AboutUs({ text }: aboutUs) {
-  const sliderAnim = useAnimation();
-  const ContainerAnim = useAnimation();
-  const textAnim = useAnimation();
+  const sliderAnim = useAnimation(); // The changing text
+  const ContainerAnim = useAnimation(); // The container getting smaller
+  const textAnim = useAnimation(); // Text
 
-  const letterWidth = 72
-  let textLetters: number = 1
+  const containerRef = useRef(null)
 
-  const ContainerRef = useRef(null);
   const textRef = useRef(null)
-
   const textinView = useInView(textRef)
-  const ContainerInView = useInView(ContainerRef, { once: true });
 
-  const [curText, cycleCurText] = useCycle(
-    "Programmers",
-    "Fullstack Devs",
-    "Sleep drained"
-  );
-    // U may add words here, or delete some if you want, those are the ones being switched through
+  // U may add words here, or delete some if you want, those are the ones being switched through
 
+  const words: string[] = ["Programmers", "Creating sites", "Sleep drained", "Working hard"]
+  const [curText, cycleCurText] = useCycle(...words);
+
+
+  // Calculating the width of the longest word:
+  const [longestWordWidth, setLongestWordWidth] = useState(0)
+  
+  useEffect(() => {
+    const words = ['programming', 'web', 'developing', 'fullstack', 'developers'];
+    let maxWidth = 0;
+
+    // Calculate the width of each word and find the maximum width
+    words.forEach((word) => {
+      const wordWidth = getTextWidth(word);
+      maxWidth = Math.max(maxWidth, wordWidth)
+    });
+
+    setLongestWordWidth(maxWidth);
+  }, []);
+
+  function getTextWidth(text: string) {
+    const maxLetterWidth = 30
+    const wordWidth: number = (text.split("").length) * maxLetterWidth
+    
+    return wordWidth
+  }
 
   // Fires when the actual text is in view
   useEffect(() => {
-    textAnim.start("show")
-  }, [textinView])
-
-  // Fires when the container is in view
-  useEffect(() => {
-    if (ContainerInView) {
-      ContainerAnim.start("show");
+    if (textinView) {
+      textAnim.start("show")
+      ContainerAnim.start("show")
+    } else {
+      ContainerAnim.set("hidden")
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ContainerInView]);
-
+  }, [textinView])
 
   // Fires when text rotates
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    textLetters = curText.split("").length
 
-    setTimeout(() => {
-      sliderAnim.start("show");
+    setTimeout(async () => {
+      sliderAnim.set("hiddenRight")
+      sliderAnim.start("rightToLeft")
+      console.log("test")
       setTimeout(cycleCurText, 600);
+    }, 4000)
 
-
-
-    }, 4000);
   }, [curText]);
 
   const phrase = text;
@@ -152,15 +163,13 @@ export default function AboutUs({ text }: aboutUs) {
 
   return (
     <motion.div
-      ref={ContainerRef}
-      animate="show"
-      variants={{}}
       id="section-aboutUs"
       className={styles.container}
     >
 
       <motion.div
-        ref={textRef}
+        ref={containerRef}
+        animate={ContainerAnim}
         variants={backgroundVariants}
         className={styles.animation_object}
       ></motion.div>
@@ -171,43 +180,26 @@ export default function AboutUs({ text }: aboutUs) {
             <h1 style={{ width: "fit-content", textAlign: "right"}}>We are </h1>
 
             <motion.h1
-            initial="hidden"
-            animate={sliderAnim}
-            variants={{ show: { transition: { staggerChildren: 0.2 } } }}
-            style={{position: "relative", textAlign: "left"}}
-            className={styles.we_are_h1}
+              animate={sliderAnim}
+              className={styles.slider_container}
+              style={{width: longestWordWidth}}
             >
             {curText}
 
                 <motion.div
                     variants={sliderVarients}
-                    style={{
-                    position: "absolute",
-                    width: `${letterWidth*textLetters}px`,
-                    height: "100%",
-                    backgroundColor: "purple",
-                    top: 0,
-                    }}
+                    className={styles.slider_1}
                 ></motion.div>
 
-                <motion.div
-                    variants={sliderVarients}
-                    style={{
-                    position: "absolute",
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: "blue",
-                    top: 0,
-                    }}
-                ></motion.div>
             </motion.h1>
         </motion.div>
      </div>
 
       <motion.div
+        ref={textRef}
         initial="hidden"
         animate={textAnim}
-        variants={{ show: { transition: { staggerChildren: 0.03 } } }}
+        variants={{ show: { transition: { staggerChildren: 0.06 } } }}
         className={styles.text_container}
       >
         {textWords}
