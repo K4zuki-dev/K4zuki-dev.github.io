@@ -1,5 +1,3 @@
-"use strict"
-
 import styles from "./Header.module.css"
 import Image from "next/image"
 
