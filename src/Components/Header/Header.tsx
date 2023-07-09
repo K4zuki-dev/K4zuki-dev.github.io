@@ -1,10 +1,13 @@
+"use strict"
+
 import styles from "./Header.module.css"
 import Image from "next/image"
 
-import { easeOut, motion, useScroll } from "framer-motion"
+import { Variants, easeOut, motion, useScroll, useTransform } from "framer-motion"
+import { NavButton } from "../../../types"
 
 
-const buttonVarients = {
+const buttonVarients: Variants = {
     hidden: {
         scaleX: 0
     },
@@ -20,13 +23,17 @@ const buttonVarients = {
 
 
 
+
 export default function Header() {
     const {scrollYProgress} = useScroll()
+
+    const opacity = useTransform(scrollYProgress, [0, 100], [0, 1])// Adjust the scroll range and opacity values as needed
+    console.log(opacity)
 
 
     return (
         <>
-            <header className={styles.header}>
+            <header className={styles.header} style={{}}>
 
                 <div className={styles.header_top}>
                     <div className={styles.logo}>

@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 
 import {Variants} from "framer-motion"
+import { aboutUs } from "../../../types";
 
 
 const textVariants: Variants = {
@@ -126,7 +127,6 @@ export default function AboutUs({ text }: aboutUs) {
     setTimeout(async () => {
       sliderAnim.set("hiddenRight")
       sliderAnim.start("rightToLeft")
-      console.log("test")
       setTimeout(cycleCurText, 600);
     }, 4000)
 

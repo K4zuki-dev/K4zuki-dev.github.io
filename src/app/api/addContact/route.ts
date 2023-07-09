@@ -1,13 +1,14 @@
-import { headers} from "next/headers"
 import { NextResponse } from "next/server"
 import clientPromise from "@/app/lib/mongodb/mongoClient"
+import { mongoContact } from "../../../../types"
 
 let client
 let db
-let result
 
 export async function POST(req: Request) {
     const data: mongoContact = await req.json()
+
+    console.log(data)
     
     try {
         client = await clientPromise;

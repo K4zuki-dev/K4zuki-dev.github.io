@@ -5,6 +5,7 @@ import { ReactNode, useState } from "react";
 import styles from "./Portfolio.module.css";
 import Image from "next/image";
 import { useEffect } from "react";
+import { ourWork } from "../../../types";
 
 const container = {
   show: {
