@@ -1,5 +1,5 @@
 #withUs {
-    color: white;
+    color: var(--clr-text);
     font-size: 400%;
     z-index: 0;
 }
@@ -17,7 +17,7 @@
     max-width: 100%;
     height: 100vh;
 
-    background-color: black;
+    background-color: var(--clr-background);
 
     z-index: -9999;
 
@@ -58,11 +58,11 @@
 }
 
 .color_accent {
- color: aqua;
+ color: var(--clr-accent);
 }
 
 .color_white {
-    color: white;
+    color: var(--clr-text);
 }
 
 .section {
@@ -74,7 +74,7 @@
     width: 100%;
     height: 100%;
 
-    background-color: black;
+    background-color: var(--clr-background);
     z-index: 2;
 }
 

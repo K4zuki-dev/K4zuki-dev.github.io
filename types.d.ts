@@ -9,19 +9,12 @@ type aboutUs = {
 }
 
 type contactForm = {
-    title: string,
-    type: string,
-    name: string,
-    id: string,
-    emailUseState: [string, Function],
-    textUseState: [string, Function],
-    validUseState: [boolean, Function],
-    placeholder?: string
+    children: ReactNode,
+    required?: boolean,
+    title?: string,
 }
 
 type dbContact = {
     email: string,
-    first_name: string,
-    second_name: string,
-    message: string,
+    content: string
 }

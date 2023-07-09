@@ -4,8 +4,6 @@ import styles from "./landing-div.module.css"
 import { ReactNode } from "react"
 import { easeInOut, motion } from "framer-motion"
 
-import Header from "@/Components/Header/Header"
-
 const delaySentence: number = .5
 const delayWithUs: number = delaySentence+1
 
@@ -67,8 +65,6 @@ export default function Landing() {
             <div className={styles.overlay}></div>
 
         </div>
-
-        <Header></Header>
 
         </>
     )

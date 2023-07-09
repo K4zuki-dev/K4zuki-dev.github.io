@@ -1,3 +1,11 @@
+:root {
+  --clr-background: #F0EDEE;
+  --clr-text: rgb(48, 48, 48);
+  --clr-text-alt: #7C7C7C;
+  --clr-invalid: rgb(255, 100, 0);
+  --clr-accent: #B8B8F3;
+}
+
 body {
   margin: 0;
   display: block;
