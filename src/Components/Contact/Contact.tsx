@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {  useRef, useState, useEffect } from "react"
 import { useHover } from "usehooks-ts"
 
 import Image from "next/image"
 import styles from "./Contact.module.css"
-import { motion, useAnimation } from "framer-motion"
+import { Variants, motion, useAnimation } from "framer-motion"
 
 
 
@@ -34,9 +35,8 @@ function Form() {
     const [textValue, setTextValue] = useState("")
     const [buttonText, setButtonText] = useState("Submit")
     const [loading, setLoading] = useState(false)
-    const [invalid, setINVALID] = useState(false)
 
-    const invalidButtonVariants = {
+    const invalidButtonVariants: Variants = {
         show: {
             x: [0, 10, -10, 0],
             transition: {
@@ -53,7 +53,7 @@ function Form() {
             backgroundColor: "rgb(120, 0, 0)",
             transition: {
                 duration: .2,
-                repeat: null
+                repeat: 0
             }
         },
         loading: {
@@ -70,7 +70,7 @@ function Form() {
         }
     }
     
-    const validButtonVariants = {
+    const validButtonVariants: Variants = {
         show: {
             scale: 1.2,
             color: "white",
@@ -89,11 +89,24 @@ function Form() {
         }
     }
 
+    const errorVariants: Variants = {
+        show: {display: "block"},
+        hidden: {display: "none"}
+    }
+
+    const validAnim = useAnimation()
+    const validRef = useRef(null)
+
+    const errorAnim = useAnimation()
+    const errorRef = useRef(null)
+
     const buttonAnim = useAnimation()
     const buttonRef = useRef(null)
     const buttonHover = useHover(buttonRef)
 
     const invalidation =  emailValue === "" || emailValue == null || !validEmail || textValue === "" || textValue == null ? (true) : (false)
+
+    // Shows the button
 
     async function showAnim() {
         if (!loading) {
@@ -101,6 +114,8 @@ function Form() {
             buttonAnim.start("show")
         }
     }
+
+    // Runs when button is clicked
 
     function clickHandler() {
         showAnim()
@@ -129,6 +144,7 @@ function Form() {
     }, [buttonHover, buttonAnim])
 
     useEffect(() => {
+        // As soon as the form is valid / invalid it will reload the animation so that it will show green or red 
         if (!loading) {
             buttonAnim.start("hidden")
         }
@@ -138,24 +154,47 @@ function Form() {
         const email: string = emailValue
         const message: string = textValue
 
+        // Submiting The form to the API
+
         if (!invalidation) {
             console.log("Submited!")
-            await fetch("http://localhost:3000/api/addContact", {
+            const res = await fetch("http://localhost:3000/api/addContact", {
                 method: "POST",
                 body: JSON.stringify({email: email, content: message})
             })
 
-            setButtonText("")
-            setEmailValue("")
-            setTextValue("")
-            setValidEmail(false)
-            setINVALID(true)
+            // Changing every value back to 0 so you can re-submit
+
+            const response = await res.json()
+            
 
             setLoading(true)
+            setButtonText("") // Looks more beautiful if button is empty
+
+            if (response.status == "200") { // check if the response was OK, if not it will show something went wrong
+                setEmailValue("")
+                setTextValue("")
+                setValidEmail(false)
+            } else {
+                setTimeout(() => { // We want this to play after the button is back again and something went wrong
+                    errorAnim.set("show")
+                    setTimeout(() => {
+                        errorAnim.set("hidden")
+                    }, 4000)
+                }, 6000) 
+            }
+
 
             setTimeout(async () => {
-                setButtonText("Submit")
+                setButtonText("Submit") // Changing button text back to "submit"
                 setLoading(false)
+                buttonAnim.start("hidden")
+
+                validAnim.set("show")
+                setTimeout(() => {
+                    validAnim.set("hidden")
+                }, 4000)
+                
             }, 6000)
 
         }
@@ -168,7 +207,7 @@ function Form() {
 
             <div className={styles.button_wrapper}>
                 <motion.button onClick={clickHandler} ref={buttonRef} animate={buttonAnim} variants={ // I dont fucking know whats wrong here??? Fix it if u can / I will do it
-                        invalidation || loading || invalid ?
+                        invalidation || loading?
                         (
                             invalidButtonVariants
                         ) : (
@@ -178,6 +217,10 @@ function Form() {
                     className={styles.submitButton} type="submit" name="form"><h1>{buttonText}</h1>
                     </motion.button>
             </div>
+
+            <motion.p ref={errorRef} initial="hidden" variants={errorVariants} animate={errorAnim} style={{color: "red"}}>Error, something went wrong, try again later</motion.p>
+            <motion.p ref={validRef} initial="hidden" variants={errorVariants} animate={validAnim} style={{color: "green"}}>Successfully submitted!</motion.p>
+            {/* Here we are using Variants "ErrorVariants" for both, because they do the same thing, show / dont show */}
 
         </>
     )

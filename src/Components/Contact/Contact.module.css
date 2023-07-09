@@ -30,12 +30,12 @@
     height: 30em;
 
     background: rgb(105,96,1);
-    background: radial-gradient(circle, rgba(105,96,1,1) 0%, rgb(5, 5, 5) 100%);
+    background: radial-gradient(circle, rgb(43, 39, 39) 0%, rgb(5, 5, 5) 100%);
 
     border-radius: 2em;
     overflow: hidden;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
     padding: 2em;
