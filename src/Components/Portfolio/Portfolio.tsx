@@ -67,11 +67,11 @@ async function getData() {
       "Content-Type": "application/json",
     },
   });
-  const data: ourWork[] = await res.json();
+  const data: Sites[] = await res.json();
 
   return data;
 } 
-function Pagination(data:ourWork[]) {
+function Pagination(data:Sites[]) {
 
   const paginatedWork: ReactNode[] = data.map((Site) => {
     return (
@@ -107,7 +107,7 @@ function Pagination(data:ourWork[]) {
 }
 
 export default function Portfolio() {
-  const [data,setData] = useState<ourWork[]>([]);
+  const [data,setData] = useState<Sites[]>([]);
   
   useEffect(() => {
     async function fetchAndSetData() {
