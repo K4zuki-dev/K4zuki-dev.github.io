@@ -3,11 +3,10 @@
 import styles from "./Header.module.css"
 import Image from "next/image"
 
-import { Variants, easeOut, motion, useScroll, useTransform } from "framer-motion"
+import { Variants, easeOut, motion, useAnimate, useAnimation, useScroll, useTransform } from "framer-motion"
+import { useEffect, useState } from "react"
 
-
-
-const buttonVarients: Variants = {
+const buttonVariants: Variants = {
     hidden: {
         scaleX: 0
     },
@@ -21,15 +20,21 @@ const buttonVarients: Variants = {
     }
 }
 
-
-
-
 export default function Header() {
     const {scrollYProgress} = useScroll()
+    const {scrollY} = useScroll()
+
+    const [divHeight, setDivHeight]: [number, Function] = useState(0)
+
+    useEffect(() => {
+        setDivHeight(document.getElementById("section-landingdiv")?.getBoundingClientRect().bottom as number)
+    }, [setDivHeight])
+
+    const opacityFade = useTransform(scrollY, [divHeight,divHeight*1.2], [0, 1])
 
     return (
         <>
-            <header className={styles.header} style={{}}>
+            <motion.header className={styles.header} style={{opacity: opacityFade}}>
 
                 <div className={styles.header_top}>
                     <div className={styles.logo}>
@@ -47,7 +52,7 @@ export default function Header() {
                 </div>
 
                 <motion.div style={{scaleX: scrollYProgress}} className={styles.header_bottom}></motion.div>
-            </header>
+            </motion.header>
         </>
     )
 }
@@ -67,7 +72,7 @@ function HeaderButton({text, scrollId}: NavButton) {
     return (
         <motion.div whileHover="visible" initial="hidden" variants={{}} className={styles.button_container} onClick={scrollToSection}>
             <motion.button className={styles.navButton}>{text}</motion.button>
-            <motion.div variants={buttonVarients} className={styles.button_border}></motion.div>
+            <motion.div variants={buttonVariants} className={styles.button_border}></motion.div>
         </motion.div>
     )
 }

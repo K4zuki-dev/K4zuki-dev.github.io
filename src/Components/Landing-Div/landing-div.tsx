@@ -44,7 +44,7 @@ export default function Landing() {
 
     return (
         <>
-        <div className={styles.landing_div}>
+        <div className={styles.landing_div} id="section-landingdiv">
 
             <div className={styles.overlay}>
 

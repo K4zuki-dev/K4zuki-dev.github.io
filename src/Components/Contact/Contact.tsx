@@ -60,6 +60,7 @@ function Form() {
             left: 0,
             width: "15em",
             color: "gray",
+            borderRadius: "1em",
             backgroundColor: "var(--clr-invalid)",
             transition: {
                 duration: .2,
@@ -69,11 +70,11 @@ function Form() {
         loading: {
             position: "relative",
             left: ["0em", "5em", "0em", "-5em", "0em"],
-            borderRadius: "5em",
+            borderRadius: "100%",
             width: ["4em", "4em", "4em", "4em"],
             backgroundColor: "var(--clr-invalid)",
             transition: {
-                duration: 2,
+                duration: 1,
                 ease: "easeInOut",
                 repeat: Infinity
             }
@@ -84,7 +85,6 @@ function Form() {
         show: {
             scale: 1.1,
             color: "var(--clr-text)",
-            borderRadius: "5em",
             transition: {
                 duration: .2,
             }
@@ -94,7 +94,6 @@ function Form() {
             color: "var(--clr-text)",
             width: "15em",  
             x: 0,
-            borderRadius: "5em",
             backgroundColor: "var(--clr-accent)",
         }
     }
@@ -165,6 +164,11 @@ function Form() {
         // Submiting The form to the API
 
         if (!invalidation) {
+            // const res = await fetch("https://k4zuki-dev-github-io.vercel.app/api/addContact", {
+            //     method: "POST",
+            //     body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
+            // })
+
             const res = await fetch("http://localhost:3000/api/addContact", {
                 method: "POST",
                 body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
@@ -282,7 +286,7 @@ function Form() {
                     <div className={styles.contact_information_element}>
                         
                         <div className={styles.icon_container}>
-                            <Image src="/images/icons/discord.png" alt="discord icon" fill={true}></Image>
+                            <Image src="/images/icons/discord.png" alt="discord icon" fill={true} sizes="2em"></Image>
                         </div>
 
                         <p>K4zuki. | Harique</p>
