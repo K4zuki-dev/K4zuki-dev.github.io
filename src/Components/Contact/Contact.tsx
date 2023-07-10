@@ -164,7 +164,12 @@ function Form() {
         // Submiting The form to the API
 
         if (!invalidation) {
-            const res = await fetch("https://k4zuki-dev-github-io.vercel.app/api/addContact", {
+            // const res = await fetch("https://k4zuki-dev-github-io.vercel.app/api/addContact", {
+            //     method: "POST",
+            //     body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
+            // })
+
+            const res = await fetch("http://localhost:3000/api/addContact", {
                 method: "POST",
                 body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
             })
@@ -281,7 +286,7 @@ function Form() {
                     <div className={styles.contact_information_element}>
                         
                         <div className={styles.icon_container}>
-                            <Image src="/images/icons/discord.png" alt="discord icon" fill={true}></Image>
+                            <Image src="/images/icons/discord.png" alt="discord icon" fill={true} sizes="2em"></Image>
                         </div>
 
                         <p>K4zuki. | Harique</p>

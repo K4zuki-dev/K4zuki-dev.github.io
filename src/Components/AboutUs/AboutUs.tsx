@@ -162,7 +162,7 @@ export default function AboutUs({ text }: aboutUs) {
   });
 
   return (
-    <motion.div id="section-aboutUs" className={styles.container}>
+    <motion.div id="section-aboutUs" className={styles.container} >
       <motion.div
         ref={containerRef}
         animate={ContainerAnim}
