@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-async-client-component */
 
-import { easeOut, motion } from "framer-motion";
+import { Variants, easeOut, motion } from "framer-motion";
 import { ReactNode, useState } from "react";
 import styles from "./Portfolio.module.css";
 import Image from "next/image";
