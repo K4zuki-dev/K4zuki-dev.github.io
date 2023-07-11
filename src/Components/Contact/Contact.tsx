@@ -163,7 +163,7 @@ function Form() {
 
         if (!invalidation) {
 
-            const res = await fetch(`http://localhost:3000/api/addContact`, {
+            const res = await fetch("/api/addContact", {
                 method: "POST",
                 body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
             })
@@ -238,18 +238,18 @@ function Form() {
 
 
                 <Input required={true}>
-                    <input style={emailValue == "" || emailValue == null ? ({borderBottom: "2px solid var(--clr-invalid)"}) : ({})} type="email" value={emailValue} onChange={updateEmailValue} className={styles.input} name="form" id={styles.emailInput} placeholder="Email"/>
+                    <input style={!validEmail && emailValue != "" ? ({borderBottom: "1px solid var(--clr-invalid)"}) : ({borderBottom: "1px solid gray"})} type="email" value={emailValue} onChange={updateEmailValue} className={styles.input} name="form" id={styles.emailInput} placeholder="Email"/>
                 </Input>
 
                 <Input required={true}>
                     <div style={{display: "flex", gap: "1em"}}>
-                        <input style={firstName == "" || firstName == null ? ({borderBottom: "2px solid var(--clr-invalid)"}) : ({})} type="text" value={firstName} onChange={updateFirstName} className={styles.input} name="form" id={styles.firstNameInput} autoComplete="off" placeholder="First Name"/>
-                        <input style={secondName == "" || secondName == null ? ({borderBottom: "2px solid var(--clr-invalid)"}) : ({})} type="text" value={secondName} onChange={updateSecondName} className={styles.input} name="form" id={styles.secondNameInput} autoComplete="off" placeholder="Second Name"/>
+                        <input type="text" value={firstName} onChange={updateFirstName} className={styles.input} name="form" id={styles.firstNameInput} autoComplete="off" placeholder="First Name"/>
+                        <input type="text" value={secondName} onChange={updateSecondName} className={styles.input} name="form" id={styles.secondNameInput} autoComplete="off" placeholder="Second Name"/>
                     </div>
                 </Input>
 
                 <Input required={true}>
-                    <textarea style={textValue == "" || textValue == null ? ({borderBottom: "2px solid var(--clr-invalid)"}) : ({})} value={textValue} onChange={updateTextValue} className={styles.input} id={styles.textInput} placeholder="Explain your Project briefly" autoComplete="off"></textarea>
+                    <textarea value={textValue} onChange={updateTextValue} className={styles.input} id={styles.textInput} placeholder="Explain your Project briefly" autoComplete="off"></textarea>
                 </Input>
 
 

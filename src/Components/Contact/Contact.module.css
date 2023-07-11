@@ -36,7 +36,7 @@
 
 .form {
     width: 50em;
-    height: 40em;
+    height: fit-content;
     display: flex;
     border-radius: 1em;
     z-index: 0;
