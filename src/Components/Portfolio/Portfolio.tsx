@@ -66,6 +66,30 @@ function GridItem({title="Default", img="image.png", description="defaultdefault
   )
 }
 
+function AnimatedTitle({title}: PortfolioTitle) {
+  const charVariants: Variants = {
+    show: {
+      opacity: 1,
+      bottom: "0",
+      transition: {
+        duration: .3,
+        type: "spring",
+        stiffness: 100
+      }
+    },
+    hidden: {
+      opacity: 0,
+      bottom: "3em"
+    }
+  }
+
+  const letters = title.split("").map((char, index) => {
+      return <motion.h1 key={index} variants={charVariants} style={{position: "relative"}}>{char}</motion.h1>
+  })
+
+  return letters
+}
+
 export default function Portfolio() {
   const [data, setData] = useState<Sites[]>([]);
 
@@ -73,10 +97,19 @@ export default function Portfolio() {
   const portfolioRef = useRef(null) // An reference to an element
   const portfolioInView = useInView(portfolioRef, {once: true})
 
+  const titleAnim = useAnimation()
+  const containerRef = useRef(null)
+  const containerInView = useInView(containerRef)
+
   useEffect(() => {
     portfolioAnim.start("show")
-    console.log(portfolioInView)
   }, [portfolioInView, portfolioAnim])
+
+  useEffect(() => {
+
+    containerInView ? (titleAnim.start("show")) : (titleAnim.set("hidden"))
+
+  }, [containerInView, titleAnim])
 
   useEffect(() => {
     async function fetchAndSetData() {
@@ -88,18 +121,24 @@ export default function Portfolio() {
   }, []);
 
   return (
-    <motion.div
-      ref={portfolioRef} // This will tell the useRef what the Element is and where it is
+    <div ref={containerRef}>
+      <motion.div initial="hidden" animate={portfolioAnim} variants={{}} transition={{staggerChildren: .2}} style={{display: "flex", backgroundColor: "var(--clr-background)", padding: "0 15vw", fontSize: "200%"}}>
+          <AnimatedTitle title="Portfolio"></AnimatedTitle>
+      </motion.div>
+      
+      <motion.div
+          ref={portfolioRef} // This will tell the useRef what the Element is and where it is
 
-      initial="hidden" // This gets passed
-      animate={portfolioAnim} // Those get passed to the children IF VARIANTS IS DEFINED
+          initial="hidden" // This gets passed
+          animate={portfolioAnim} // Those get passed to the children IF VARIANTS IS DEFINED
 
-      variants={{}} // U use this if you want the children to animate in an orchestration with the parent
-      transition={{staggerChildren: .5}}
-      className={styles.portfolio_container}
-      id="section-portfolio"
-    >
-      {GridContainer(data)}
-    </motion.div>
+          variants={{}} // U use this if you want the children to animate in an orchestration with the parent
+          transition={{staggerChildren: .5}}
+          className={styles.portfolio_container}
+          id="section-portfolio"
+        >
+          {GridContainer(data)}
+      </motion.div>
+    </div>
   );
 }

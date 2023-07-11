@@ -178,8 +178,8 @@
     .form {
       display: -webkit-flex;
       display: flex;
-      -webkit-flex-direction: column;
-      flex-direction: column;
+      -webkit-flex-direction: column-reverse;
+      flex-direction: column-reverse;
       -webkit-align-items: center;
       align-items: center;
       height: fit-content;

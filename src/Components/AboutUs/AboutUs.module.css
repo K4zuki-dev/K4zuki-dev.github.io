@@ -74,7 +74,7 @@
   }
   
   .text {
-    margin: 10px;
+    margin: 5px;
     font-size: 200%;
   }
   
@@ -105,10 +105,17 @@
   
   @media (max-width: 600px) {
     .container {
-      height: 100vh;
-      font-size: 2.7vw;
+      font-size: 3vw;
     }
-    
+
+    .text_container {
+      justify-content: center;
+    }
+
+    .text {
+      margin: 0;
+    }
+
     .we_are_h1 {
       width: 80%;
     }

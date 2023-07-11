@@ -22,3 +22,7 @@ type NavButton = {
     text: string,
     scrollId: string,
 }
+
+type PortfolioTitle = {
+    title: string
+  }
