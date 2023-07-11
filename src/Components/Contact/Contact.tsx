@@ -161,15 +161,9 @@ function Form() {
 
     async function submit() {
 
-        // Submiting The form to the API
-
         if (!invalidation) {
-            // const res = await fetch("https://k4zuki-dev-github-io.vercel.app/api/addContact", {
-            //     method: "POST",
-            //     body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
-            // })
 
-            const res = await fetch("http://localhost:3000/api/addContact", {
+            const res = await fetch(`http://localhost:3000/api/addContact`, {
                 method: "POST",
                 body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
             })

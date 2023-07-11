@@ -48,28 +48,25 @@ const rightToLeft = {
     opacity: 0,
   },
 };
-const imageFade = {
+const imageVariant = {
   show: {
     transition: {
-      duration: 0.5,
+      duration: 0.35,
     },
     opacity: 1,
+    rotateY: 0,
   },
-
+  flip: {
+    transition: {
+      duration: 0.35,
+    },
+    rotateY: 180,
+  },
   hidden: {
     opacity: 0,
   },
 };
 async function getData() {
-
-
-  // const res = await fetch("https://k4zuki-dev-github-io.vercel.app/api/sites", {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-
   const res = await fetch("http://localhost:3000/api/sites", {
     method: "GET",
     headers: {
@@ -77,60 +74,60 @@ async function getData() {
     },
   });
 
-
-
   const data: Sites[] = await res.json();
 
   return data;
-} 
-function Pagination(data:Sites[]) {
+}
 
+function GridContainer(data: Sites[]) {
   const paginatedWork: ReactNode[] = data.map((Site) => {
     return (
-      <div key={Site.title} className={styles.wrapper}>
-        <motion.h1 variants={leftToRight} style={{ position: "relative" }}>
-          {Site.title}
-        </motion.h1>
-
-        <motion.div
-          variants={imageFade}
-          initial="hidden"
-          whileInView="show"
-          className={styles.image_container}
-        >
-            <Image
-              src="/images/image.png"
-              fill={true}
-              alt="hi"
-              className={styles.portfolio_image}
-              sizes="10em"
-            ></Image>
-
-        </motion.div>
-
-        <motion.p variants={rightToLeft} style={{ position: "relative" }}>
-          {Site.description}
-        </motion.p>
-      </div>
+      GridItem(Site)
     );
   });
 
-  return paginatedWork ;
+  return paginatedWork;
+}
+
+function GridItem(Site:Sites) {
+  return (
+    <div key={Site.title} className={styles.wrapper}>
+        <div className={styles.flip_card}>
+          <div className={styles.flip_card_inner}>
+
+            <div className={styles.flip_card_front}>
+              <Image
+                src="/images/image.png"
+                fill={true}
+                alt="hi"
+                className={styles.portfolio_image}
+                sizes="10em"
+              ></Image>
+            </div>
+
+            <div className={styles.flip_card_back}>
+              <h1>{Site.title}</h1>
+              <p>{Site.Description}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  )
 }
 
 export default function Portfolio() {
-  const [data,setData] = useState<Sites[]>([]);
-  
+  const [data, setData] = useState<Sites[]>([]);
+
   useEffect(() => {
     async function fetchAndSetData() {
-       const data = await getData();
-       setData(data);
+      const data = await getData();
+      setData(data);
     }
-    
-   fetchAndSetData()
 
- }, []);
- 
+    fetchAndSetData();
+  }, []);
+
   return (
     <motion.div
       initial="hidden"
@@ -139,7 +136,7 @@ export default function Portfolio() {
       className={styles.portfolio_container}
       id="section-portfolio"
     >
-      {Pagination(data)}
+      {GridContainer(data)}
     </motion.div>
   );
 }

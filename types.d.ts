@@ -1,6 +1,6 @@
 type Sites = {
     title:string,
-    description:string,
+    Description:string,
 
 }
 
