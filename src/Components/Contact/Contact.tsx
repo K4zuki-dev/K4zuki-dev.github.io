@@ -59,9 +59,9 @@ function Form() {
             position: "relative",
             left: 0,
             width: "15em",
-            color: "gray",
+            color: "var(--clr-text-alt)",
             borderRadius: "1em",
-            backgroundColor: "var(--clr-invalid)",
+            backgroundColor: "var(--clr-accent)",
             transition: {
                 duration: .2,
                 repeat: 0
@@ -69,12 +69,12 @@ function Form() {
         },
         loading: {
             position: "relative",
-            left: ["0em", "5em", "0em", "-5em", "0em"],
+            left: ["5em", "-5em", "5em"],
             borderRadius: "100%",
-            width: ["4em", "4em", "4em", "4em"],
-            backgroundColor: "var(--clr-invalid)",
+            width: "4em",
+            backgroundColor: "var(--clr-accent)",
             transition: {
-                duration: 1,
+                duration: .8,
                 ease: "easeInOut",
                 repeat: Infinity
             }
@@ -84,14 +84,14 @@ function Form() {
     const validButtonVariants: Variants = {
         show: {
             scale: 1.1,
-            color: "var(--clr-text)",
+            color: "var(--clr-background)",
             transition: {
-                duration: .2,
+                duration: .3,
             }
         },
         hidden: {
             scale: 1,
-            color: "var(--clr-text)",
+            color: "var(--clr-background)",
             width: "15em",  
             x: 0,
             backgroundColor: "var(--clr-accent)",

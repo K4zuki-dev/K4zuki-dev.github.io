@@ -37,6 +37,7 @@
     border-radius: 100%;
     width: 3em;
     height: 3em;
+    cursor: pointer;
 }
 
 .navBar {

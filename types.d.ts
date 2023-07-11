@@ -1,7 +1,7 @@
 type Sites = {
     title:string,
-    Description:string,
-
+    description:string,
+    img: string | "image.png" //name of the image, path is selected automatically (its /images/portfolio/{name}) DONT FORGET THE ENDING (.png, .jpg whatever)
 }
 
 type aboutUs = {

@@ -26,7 +26,7 @@ const backgroundVariants: Variants = {
     scaleY: 0,
     transition: {
       delay: 0.5,
-      duration: 0.6,
+      duration: 0.3,
       ease: "easeInOut",
     },
   },
@@ -72,14 +72,14 @@ export default function AboutUs({ text }: aboutUs) {
   const containerRef = useRef(null);
 
   const textRef = useRef(null);
-  const textinView = useInView(textRef);
+  const textinView = useInView(textRef, {once: true});
 
   // U may add words here, or delete some if you want, those are the ones being switched through
 
   const words: string[] = [
     "Programmers",
     "Creating sites",
-    "Sleep drained",
+    "Sleep deprived",
     "Working hard",
   ];
   const [curText, cycleCurText] = useCycle(...words);
@@ -107,7 +107,7 @@ export default function AboutUs({ text }: aboutUs) {
   }, []);
 
   function getTextWidth(text: string) {
-    const maxLetterWidth = 30;
+    const maxLetterWidth = 40;
     const wordWidth: number = text.split("").length * maxLetterWidth;
 
     return wordWidth;

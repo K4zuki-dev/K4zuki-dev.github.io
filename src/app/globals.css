@@ -1,9 +1,13 @@
 :root {
+  /* Color palette: */
+
   --clr-background: #F0EDEE;
   --clr-text: rgb(48, 48, 48);
   --clr-text-alt: #7C7C7C;
+  --clr-accent: #7EC4CF;
+
+
   --clr-invalid: rgb(255, 100, 0);
-  --clr-accent: #B8B8F3;
 }
 
 body {

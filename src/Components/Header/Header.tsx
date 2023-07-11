@@ -32,12 +32,16 @@ export default function Header() {
 
     const opacityFade = useTransform(scrollY, [divHeight,divHeight*1.2], [0, 1])
 
+    function scrollUp() {
+        window.scrollTo({top: 0, behavior: "smooth"})
+    }
+
     return (
         <>
             <motion.header className={styles.header} style={{opacity: opacityFade}}>
 
                 <div className={styles.header_top}>
-                    <div className={styles.logo}>
+                    <div onClick={scrollUp} className={styles.logo}>
                       
                         <Image src="/images/logo.jpg" alt="Our Logo" fill={true} sizes="5em" className={styles.logo} />
 

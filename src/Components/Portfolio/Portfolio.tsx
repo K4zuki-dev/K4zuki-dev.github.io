@@ -1,73 +1,19 @@
 /* eslint-disable @next/next/no-async-client-component */
 
-import { Variants, easeOut, motion } from "framer-motion";
-import { ReactNode, useState } from "react";
+import { Variants, easeOut, motion, useAnimation, useInView } from "framer-motion";
+import { ReactNode, useRef, useState } from "react";
 import styles from "./Portfolio.module.css";
 import Image from "next/image";
 import { useEffect } from "react";
 
-const container = {
-  show: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 1,
-      duration: 0.5,
-      ease: easeOut,
-      type: "bounce",
-    },
-    right: "0",
-  },
-  hidden: {
-    right: "10em",
-  },
-};
-const leftToRight = {
-  show: {
-    transition: {
-      duration: 0.5,
-    },
+const gridItemVariants: Variants = {
+  show: {opacity: 1, top: "0em", transition: {duration: .5, ease: easeOut}},
+  
+  hidden: {opacity: 0, top: "5em"}
+}
 
-    left: "0",
-    opacity: 1,
-  },
-  hidden: {
-    left: "10em",
-    opacity: 0,
-  },
-};
-const rightToLeft = {
-  show: {
-    transition: {
-      duration: 0.5,
-    },
-    right: "0",
-    opacity: 1,
-  },
-  hidden: {
-    right: "10em",
-    opacity: 0,
-  },
-};
-const imageVariant = {
-  show: {
-    transition: {
-      duration: 0.35,
-    },
-    opacity: 1,
-    rotateY: 0,
-  },
-  flip: {
-    transition: {
-      duration: 0.35,
-    },
-    rotateY: 180,
-  },
-  hidden: {
-    opacity: 0,
-  },
-};
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/sites", {
+  const res = await fetch("/api/portfolio", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -89,35 +35,48 @@ function GridContainer(data: Sites[]) {
   return paginatedWork;
 }
 
-function GridItem(Site:Sites) {
+function GridItem({title="Default", img="image.png", description="defaultdefaultdefault"}:Sites) {
+  const src = img
+
   return (
-    <div key={Site.title} className={styles.wrapper}>
+    <motion.div variants={gridItemVariants} key={title} className={styles.wrapper}>
         <div className={styles.flip_card}>
           <div className={styles.flip_card_inner}>
 
             <div className={styles.flip_card_front}>
               <Image
-                src="/images/image.png"
+                src={`/images/portfolio/${src}`}
                 fill={true}
-                alt="hi"
+                alt="Image of one of our Project website"
                 className={styles.portfolio_image}
-                sizes="10em"
+                sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw"
               ></Image>
             </div>
 
             <div className={styles.flip_card_back}>
-              <h1>{Site.title}</h1>
-              <p>{Site.Description}</p>
+              <div className={styles.flip_card_back_text}>
+                <h1>{title}</h1>
+                <p>{description}</p>
+              </div>
             </div>
 
           </div>
         </div>
-      </div>
+      </motion.div>
   )
 }
 
 export default function Portfolio() {
   const [data, setData] = useState<Sites[]>([]);
+
+  const portfolioAnim = useAnimation()
+  const portfolioRef = useRef(null) // An reference to an element
+  const portfolioInView = useInView(portfolioRef, {once: true})
+
+  useEffect(() => {
+    portfolioAnim.start("show")
+    console.log(portfolioInView)
+  }, [portfolioInView, portfolioAnim])
 
   useEffect(() => {
     async function fetchAndSetData() {
@@ -130,9 +89,13 @@ export default function Portfolio() {
 
   return (
     <motion.div
-      initial="hidden"
-      whileInView="show"
-      variants={{}}
+      ref={portfolioRef} // This will tell the useRef what the Element is and where it is
+
+      initial="hidden" // This gets passed
+      animate={portfolioAnim} // Those get passed to the children IF VARIANTS IS DEFINED
+
+      variants={{}} // U use this if you want the children to animate in an orchestration with the parent
+      transition={{staggerChildren: .5}}
       className={styles.portfolio_container}
       id="section-portfolio"
     >
