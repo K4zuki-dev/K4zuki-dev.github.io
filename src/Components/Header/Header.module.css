@@ -1,97 +1,95 @@
 .header {
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
-
     margin: 0;
-
     width: 100%;
     max-width: 100%;
-    height:fit-content;
-    
+    height: fit-content;
     position: fixed;
     top: 0;
-
-    z-index: 9999; 
+    z-index: 9999;
     background-color: black;
-
     overflow-x: hidden;
-}
-
-.header_top {
+  }
+  
+  .header_top {
+    display: -webkit-flex;
     display: flex;
+    -webkit-align-items: center;
     align-items: center;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
-
     padding: 1em;
-}
-
-.header_bottom {
+  }
+  
+  .header_bottom {
     height: 2px;
     background-color: var(--clr-accent);
-
+    -webkit-transform-origin: left;
     transform-origin: left;
-}
-
-.logo {
+  }
+  
+  .logo {
     position: relative;
     border-radius: 100%;
     width: 3em;
     height: 3em;
     cursor: pointer;
-}
-
-.navBar {
+  }
+  
+  .navBar {
+    display: -webkit-flex;
     display: flex;
+    -webkit-align-items: center;
     align-items: center;
+    -webkit-justify-content: space-around;
     justify-content: space-around;
-
     width: fit-content;
     min-width: 50%;
-}
-
-.navButton {
+  }
+  
+  .navButton {
     width: 100%;
     height: 100%;
-
     background-color: transparent;
     color: var(--clr-background);
     border: none;
     font-size: 90%;
-
     cursor: pointer;
-}
-
-.button_container {
+  }
+  
+  .button_container {
     position: relative;
     width: fit-content;
     height: 2em;
-
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -webkit-align-items: center;
     align-items: center;
-}
-
-.button_border {
+  }
+  
+  .button_border {
     height: 2px;
     position: absolute;
     top: 100%;
     background-color: var(--clr-background);
     width: 90%;
-
+    -webkit-transform-origin: left;
     transform-origin: left;
-}
-
-/* .active_button {
-    border-bottom: white solid 1px;
-} */
-
-@media (max-width: 600px) {
+  }
+  
+  @media (max-width: 600px) {
     .logo {
-        display: none;
+      display: none;
     }
-
+  
     .navBar {
-        width: 100%;
-        font-size: 2vw;
+      width: 100%;
+      font-size: 2vw;
     }
-}
+  }
+  
