@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-async-client-component */
 
-import { easeOut, motion } from "framer-motion";
+import { Variants, easeOut, motion } from "framer-motion";
 import { ReactNode, useState } from "react";
 import styles from "./Portfolio.module.css";
 import Image from "next/image";
@@ -48,7 +48,7 @@ const rightToLeft = {
     opacity: 0,
   },
 };
-const imageFade = {
+const imageFade: Variants = {
   show: {
     transition: {
       duration: 0.5,
@@ -70,14 +70,12 @@ async function getData() {
   //   },
   // });
 
-  const res = await fetch("http://localhost:3000/api/sites", {
+  const res = await fetch("/api/sites", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-
 
   const data: Sites[] = await res.json();
 
@@ -96,6 +94,7 @@ function Pagination(data:Sites[]) {
           variants={imageFade}
           initial="hidden"
           whileInView="show"
+          whileHover="flip"
           className={styles.image_container}
         >
             <Image

@@ -169,7 +169,7 @@ function Form() {
             //     body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
             // })
 
-            const res = await fetch("http://localhost:3000/api/addContact", {
+            const res = await fetch("/api/addContact", {
                 method: "POST",
                 body: JSON.stringify({email: emailValue, message: textValue, first_name: firstName, second_name: secondName })
             })
