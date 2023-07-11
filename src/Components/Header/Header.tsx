@@ -67,7 +67,7 @@ function HeaderButton({text, scrollId}: NavButton) {
         const sectionElement = document.getElementById(scrollId);
         if (sectionElement) {
           window.scrollTo({
-            top: sectionElement.offsetTop,
+            top: sectionElement.offsetTop-100,
             behavior: "smooth",
           });
         }

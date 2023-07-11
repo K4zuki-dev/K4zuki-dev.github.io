@@ -5,6 +5,7 @@ import { ReactNode, useRef, useState } from "react";
 import styles from "./Portfolio.module.css";
 import Image from "next/image";
 import { useEffect } from "react";
+import { title } from "process";
 
 const gridItemVariants: Variants = {
   show: {opacity: 1, top: "0em", transition: {duration: .5, ease: easeOut}},
@@ -66,49 +67,27 @@ function GridItem({title="Default", img="image.png", description="defaultdefault
   )
 }
 
-function AnimatedTitle({title}: PortfolioTitle) {
-  const charVariants: Variants = {
-    show: {
-      opacity: 1,
-      bottom: "0",
-      transition: {
-        duration: .3,
-        type: "spring",
-        stiffness: 100
-      }
-    },
-    hidden: {
-      opacity: 0,
-      bottom: "3em"
-    }
-  }
-
-  const letters = title.split("").map((char, index) => {
-      return <motion.h1 key={index} variants={charVariants} style={{position: "relative"}}>{char}</motion.h1>
-  })
-
-  return letters
-}
-
 export default function Portfolio() {
   const [data, setData] = useState<Sites[]>([]);
 
   const portfolioAnim = useAnimation()
+
   const portfolioRef = useRef(null) // An reference to an element
   const portfolioInView = useInView(portfolioRef, {once: true})
 
-  const titleAnim = useAnimation()
   const containerRef = useRef(null)
   const containerInView = useInView(containerRef)
+  const titleAnim = useAnimation()
+ 
+  // UseEffect hooks
 
   useEffect(() => {
-    portfolioAnim.start("show")
+    
+    portfolioAnim ? (portfolioAnim.start("show")) : ({})
   }, [portfolioInView, portfolioAnim])
 
   useEffect(() => {
-
-    containerInView ? (titleAnim.start("show")) : (titleAnim.set("hidden"))
-
+    containerInView ? (titleAnim.start("show")) : (titleAnim.set("hidden") )
   }, [containerInView, titleAnim])
 
   useEffect(() => {
@@ -120,10 +99,32 @@ export default function Portfolio() {
     fetchAndSetData();
   }, []);
 
+  // Variants
+
+  const charVariants: Variants = {
+    show: {
+      opacity: 1,
+      bottom: "0",
+      transition: {
+        duration: .1,
+        type: "spring",
+        stiffness: 100
+      }
+    },
+    hidden: {
+      opacity: 0,
+      bottom: "3em"
+    }
+  }
+
   return (
-    <div ref={containerRef}>
-      <motion.div initial="hidden" animate={portfolioAnim} variants={{}} transition={{staggerChildren: .2}} style={{display: "flex", backgroundColor: "var(--clr-background)", padding: "0 15vw", fontSize: "200%"}}>
-          <AnimatedTitle title="Portfolio"></AnimatedTitle>
+          <div ref={containerRef} id="section-portfolio">
+      <motion.div initial="hidden" animate={titleAnim} variants={{}} transition={{staggerChildren: .1}} style={{display: "flex", backgroundColor: "var(--clr-background)", padding: "0 15vw", fontSize: "200%", borderBottom: "solid 1px var(--clr-accent)"}}>
+          {
+            "Portfolio".split("").map((char, index) => {
+                return <motion.h1 key={index} variants={charVariants} style={{position: "relative", color: "var(--clr-text)"}}>{char}</motion.h1>
+            })
+          }
       </motion.div>
       
       <motion.div
@@ -135,7 +136,6 @@ export default function Portfolio() {
           variants={{}} // U use this if you want the children to animate in an orchestration with the parent
           transition={{staggerChildren: .5}}
           className={styles.portfolio_container}
-          id="section-portfolio"
         >
           {GridContainer(data)}
       </motion.div>
