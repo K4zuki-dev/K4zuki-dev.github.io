@@ -16,7 +16,9 @@ type contactForm = {
 
 type dbContact = {
     email: string,
-    content: string
+    message: string,
+    first_name: string,
+    second_name: string,
 }
 type NavButton = {
     text: string,

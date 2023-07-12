@@ -52,7 +52,6 @@ function Form() {
             transition: {
                 duration: .2,
                 ease: "easeInOut",
-                repeat: 1
             }
         },
         hidden: {
@@ -64,7 +63,6 @@ function Form() {
             backgroundColor: "var(--clr-accent)",
             transition: {
                 duration: .2,
-                repeat: 0
             }
         },
         loading: {
@@ -83,6 +81,7 @@ function Form() {
     
     const validButtonVariants: Variants = {
         show: {
+            position: "relative",
             scale: 1.1,
             color: "var(--clr-background)",
             transition: {
@@ -90,12 +89,13 @@ function Form() {
             }
         },
         hidden: {
+            position: "relative",
             scale: 1,
             color: "var(--clr-background)",
             width: "15em",  
             x: 0,
             backgroundColor: "var(--clr-accent)",
-        }
+        },
     }
 
     const errorVariants: Variants = {
@@ -113,7 +113,7 @@ function Form() {
     const buttonRef = useRef(null)
     const buttonHover = useHover(buttonRef)
 
-    const invalidation =  emailValue == "" || !validEmail || textValue == "" || firstName == "" || secondName == "" ? (true) : (false)
+    const validation =  emailValue !== "" && validEmail && textValue !== "" && firstName !== "" && secondName !== "" ? (true) : (false)
 
     // Shows the button
 
@@ -124,44 +124,45 @@ function Form() {
         }
     }
 
+
     // Runs when button is clicked
 
-    function clickHandler() {
+    function clickHandler() { 
         showAnim()
         submit()
     }
 
     useEffect(() => {
-        // Check if the loading aniamtion is currently playing
         if (loading) {
-            // No transformation, you have to SET it before you START it or else it will change colors, annoying I worked untill 6 am for this bullshit
             buttonAnim.set("loading")
             buttonAnim.start("loading")
-        } else {
+        } else if (!loading) {
             buttonAnim.start("hidden")
         }
-
-    }, [loading])
+    }, [loading, buttonAnim])
 
     useEffect(() => {
         // Animate if hovering and its not loading currently
         if (buttonHover && !loading)  {
             buttonAnim.start("show")
-        } else if (!buttonHover) {
+        } else if (!buttonHover && !loading) {
             buttonAnim.start("hidden")
         }
     }, [buttonHover, buttonAnim])
 
     useEffect(() => {
-        // As soon as the form is valid / invalid it will reload the animation so that it will show green or red 
+        // As soon as the form is valid / invalid it will reload the animation so that it will show valid or unvalid
         if (!loading) {
             buttonAnim.start("hidden")
         }
-    }, [invalidation])
+    }, [validation])
 
     async function submit() {
 
-        if (!invalidation) {
+        if (validation) {
+
+            setLoading(true)
+            setButtonText("") // Looks more beautiful if button is empty
 
             const res = await fetch("/api/addContact", {
                 method: "POST",
@@ -171,10 +172,7 @@ function Form() {
             // Changing every value back to 0 so you can re-submit
 
             const response = await res.json()
-            
 
-            setLoading(true)
-            setButtonText("") // Looks more beautiful if button is empty
 
             if (response.status == "200") { // check if the response was OK, if not it will show something went wrong
                 setEmailValue("")
@@ -183,12 +181,10 @@ function Form() {
                 setTextValue("")
                 setValidEmail(false)
             } else {
-                setTimeout(() => { // We want this to play after the button is back again and something went wrong
-                    errorAnim.set("show")
-                    setTimeout(() => {
-                        errorAnim.set("hidden")
-                    }, 4000)
-                }, 6000) 
+                errorAnim.set("show")          
+                setTimeout(() => { 
+                    errorAnim.set("hidden")     // We want this to play after the button is back again and something went wrong
+                }, 4000)
             }
 
 
@@ -202,7 +198,7 @@ function Form() {
                     validAnim.set("hidden")
                 }, 4000)
                 
-            }, 6000)
+            }, 4000)
 
         }
     }
@@ -254,8 +250,8 @@ function Form() {
 
 
                 <div className={styles.button_wrapper}>
-                    <motion.button onClick={clickHandler} ref={buttonRef} animate={buttonAnim} variants={ // I dont fucking know whats wrong here??? Fix it if u can / I will do it
-                            invalidation || loading?
+                    <motion.button onClick={clickHandler} ref={buttonRef} animate={buttonAnim} variants={
+                            !validation || loading?
                             (
                                 invalidButtonVariants
                             ) : (

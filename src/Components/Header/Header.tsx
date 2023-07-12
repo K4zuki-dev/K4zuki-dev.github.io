@@ -3,7 +3,7 @@
 import styles from "./Header.module.css"
 import Image from "next/image"
 
-import { Variants, easeOut, motion, useAnimate, useAnimation, useScroll, useTransform } from "framer-motion"
+import { Variants, easeOut, motion, useScroll, useTransform } from "framer-motion"
 import { useEffect, useState } from "react"
 
 const buttonVariants: Variants = {
@@ -30,7 +30,7 @@ export default function Header() {
         setDivHeight(document.getElementById("section-landingdiv")?.getBoundingClientRect().bottom as number)
     }, [setDivHeight])
 
-    const opacityFade = useTransform(scrollY, [divHeight,divHeight*1.2], [0, 1])
+    const opacityFade = useTransform(scrollY, [divHeight-300, divHeight-200], [0, 1])
 
     function scrollUp() {
         window.scrollTo({top: 0, behavior: "smooth"})
