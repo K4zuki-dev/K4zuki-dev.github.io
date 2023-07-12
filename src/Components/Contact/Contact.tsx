@@ -58,7 +58,7 @@ function Form() {
             position: "relative",
             left: 0,
             width: "15em",
-            color: "var(--clr-text-alt)",
+            color: "var(--clr-background)",
             borderRadius: "1em",
             backgroundColor: "var(--clr-accent)",
             transition: {
@@ -78,7 +78,7 @@ function Form() {
             }
         }
     }
-    
+
     const validButtonVariants: Variants = {
         show: {
             position: "relative",
@@ -92,7 +92,7 @@ function Form() {
             position: "relative",
             scale: 1,
             color: "var(--clr-background)",
-            width: "15em",  
+            width: "15em",
             x: 0,
             backgroundColor: "var(--clr-accent)",
         },
@@ -127,7 +127,7 @@ function Form() {
 
     // Runs when button is clicked
 
-    function clickHandler() { 
+    function clickHandler() {
         showAnim()
         submit()
     }
@@ -181,8 +181,8 @@ function Form() {
                 setTextValue("")
                 setValidEmail(false)
             } else {
-                errorAnim.set("show")          
-                setTimeout(() => { 
+                errorAnim.set("show")
+                setTimeout(() => {
                     errorAnim.set("hidden")     // We want this to play after the button is back again and something went wrong
                 }, 4000)
             }
@@ -197,13 +197,13 @@ function Form() {
                 setTimeout(() => {
                     validAnim.set("hidden")
                 }, 4000)
-                
+
             }, 4000)
 
         }
     }
 
-    
+
     function updateEmailValidation(event: React.ChangeEvent<HTMLInputElement>) {
         setValidEmail(event.currentTarget.validity.valid)
     }
@@ -227,7 +227,7 @@ function Form() {
 
     return (
         <div className={styles.form}>
-            
+
             <div className={styles.form_wrapper}>
 
                 <h1 style={{borderBottom: "1px solid var(--clr-text)", width: "100%"}}>Contact us:</h1>
@@ -257,7 +257,7 @@ function Form() {
                             ) : (
                                 validButtonVariants
                             )
-                        } 
+                        }
                         className={styles.submitButton} type="submit" name="form"><h1>{buttonText}</h1>
                         </motion.button>
                 </div>
@@ -274,7 +274,7 @@ function Form() {
                     <p >Write us an Contact form and we will answer you per E-Mail</p>
 
                     <div className={styles.contact_information_element}>
-                        
+
                         <div className={styles.icon_container}>
                             <Image src="/images/icons/discord.png" alt="discord icon" fill={true} sizes="2em"></Image>
                         </div>

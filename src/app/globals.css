@@ -1,22 +1,46 @@
-:root {
-  /* Color palette: */
 
-  --clr-background: #F0EDEE;
-  --clr-text: rgb(48, 48, 48);
-  --clr-text-alt: #7C7C7C;
-  --clr-accent: #7EC4CF;
+/* Für dark mode */
+[data-theme="dark"] {
+  --clr-primary: #42F0CD;
+  --clr-secondary: #04222F;
+  --clr-background: #050505;
 
+  --clr-text: #FAFAFA;
+  --clr-text-alt: #b3b3b3;
+  --clr-text-alt-2: #fbfbfb;
 
-  --clr-invalid: rgb(255, 0, 0);
+  --clr-accent: #71CDF4;
+  --clr-accent2: #0fc2ff;
+  --clr-accent3: #050505;
+
+  --clr-invalid: #ff0000;
+}
+
+/* Für light mode */
+[data-theme="light"] {
+  --clr-primary: #42f0cd;
+  --clr-secondary: #c2e9fa;
+  --clr-background: #fbfbfb;
+
+  --clr-text: #1b1b1b;
+  --clr-text-alt: #7c7c7c;
+  --clr-text-alt-2: #fbfbfb;
+
+  --clr-accent: #12a1de;
+  --clr-accent2: #03d1ff;
+  --clr-accent3: #050505;
+
+  --clr-invalid: #ff0000;
 }
 
 body {
   margin: 0;
   display: block;
-  background-color: black;
+  background-color: var(--clr-background);
 }
 
-body, html {
+body,
+html {
   position: relative;
   overflow-x: clip;
   margin: 0;

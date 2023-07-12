@@ -23,11 +23,23 @@ const item = {
 
 const item2 = {
     hidden: { y: "3em" },
-    show: { 
+    show: {
         y: "0em",
         transition: {
             ease: easeInOut,
             duration: .2,
+            delay: delayWithUs,
+        }
+}
+}
+
+const item3 = {
+    hidden: { y: "4em" },
+    show: {
+        y: "0em",
+        transition: {
+            ease: easeInOut,
+            duration: .3,
             delay: delayWithUs,
         }
 }
@@ -51,13 +63,13 @@ export default function Landing() {
             </div>
 
             <div className={styles.landing_div_text}>
-                
+
                 <motion.div initial="hidden" animate="show" variants={container} className={styles.landing_div_sentence}>
                         {elems}
                 </motion.div>
-                    
+
                 <motion.div>
-                    <motion.h1 initial="hidden" animate="show" variants={item2} id={styles.withUs}>With us.</motion.h1>
+                    <motion.h1 initial="hidden" animate="show" variants={item2} id={styles.with}>With</motion.h1> <motion.h1 initial="hidden" animate="show" variants={item3} id={styles.us}>us.</motion.h1>
                 </motion.div>
 
             </div>
