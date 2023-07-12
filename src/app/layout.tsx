@@ -25,23 +25,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [theme, setTheme] = useState("light");
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
-
-  useEffect(() => {
-    document.body.dataset.theme = theme;
-  }, [theme]);
 
   return (
     <html lang="en">
       <body className={font.className}>
-      <Header toggleTheme={toggleTheme} />
-
-{children}
-<Footer />
+        {children}
       </body>
     </html>
   );

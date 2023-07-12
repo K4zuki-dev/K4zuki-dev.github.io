@@ -10,7 +10,7 @@
   max-width: 100%;
   min-height: 100vh;
   height: fit-content;
-  background-color: black;
+  background-color: var(--clr-background);
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;

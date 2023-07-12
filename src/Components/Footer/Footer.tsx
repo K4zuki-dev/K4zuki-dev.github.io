@@ -1,21 +1,22 @@
 import styles from "./Footer.module.css";
+import Link from "next/link";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
       <p>
-        <a href="/privacy-policy" className={styles.footer_link}>
+        <Link href="/privacy-policy" className={styles.footer_link}>
           Privacy Policy
-        </a>
+        </Link>
         {" "}
         /
         {" "}
-        <a href="/imprint" className={styles.footer_link}>
+        <Link href="/imprint" className={styles.footer_link}>
           Imprint
-        </a>
+        </Link>
       </p>
       <p className={styles.footer_text}>
-        &copy; 2023 Maximilian Gummibärchen. All rights reserved.
+        &copy; 2023 Kazuki. All rights reserved.
       </p>
     </footer>
   );

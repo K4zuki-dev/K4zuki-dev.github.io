@@ -34,11 +34,10 @@ export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
   const [divHeight, setDivHeight]: [number, Function] = useState(0);
 
   useEffect(() => {
-    setDivHeight(
-      document.getElementById("section-landingdiv")?.getBoundingClientRect()
-        .bottom as number
-    );
-  }, [setDivHeight]);
+    setTimeout(() => {
+      setDivHeight(document.getElementById("section-landingdiv")?.getBoundingClientRect().bottom as number);
+    }, 1)
+  }, []);
 
   const opacityFade = useTransform(
     scrollY,
