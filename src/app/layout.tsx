@@ -1,12 +1,5 @@
-'use client'
 import "./globals.css";
 import { Kanit } from "next/font/google";
-import { useState } from "react";
-import { useEffect } from "react";
-
-import Footer from "@/Components/Footer/Footer";
-import Header from "@/Components/Header/Header";
-
 const font = Kanit({ weight: "600", subsets: ["latin"] });
 
 export const metadata = {
