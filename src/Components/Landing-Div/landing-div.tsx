@@ -80,7 +80,7 @@ export default function Landing() {
                         {elems}
                 </motion.div>
 
-                <motion.div>
+                <motion.div style={{display: "flex", alignItems: "center", gap: "1em", justifyContent: "center"}}>
                     <motion.h1 initial="hidden" animate={startAnim} variants={item2} id={styles.with}>With</motion.h1> 
                     <motion.h1 initial="hidden" animate={startAnim} variants={item3} id={styles.us}>us.</motion.h1>
                 </motion.div>
