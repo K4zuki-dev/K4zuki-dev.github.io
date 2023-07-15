@@ -21,20 +21,6 @@ const textVariants: Variants = {
   },
 };
 
-const backgroundVariants: Variants = {
-  show: {
-    scaleY: 0,
-    transition: {
-      delay: 0.5,
-      duration: 0.3,
-      ease: "easeInOut",
-    },
-  },
-  hidden: {
-    scaleY: 1,
-  },
-};
-
 const sliderVarients: Variants = {
   rightToLeft: {
     left: "-100%",
@@ -128,7 +114,7 @@ export default function AboutUs({ text }: aboutUs) {
     setTimeout(async () => {
       sliderAnim.set("hiddenRight");
       sliderAnim.start("rightToLeft");
-      setTimeout(cycleCurText, 600);
+      setTimeout(cycleCurText, 750);
     }, 4000);
   }, [curText]);
 
@@ -163,12 +149,6 @@ export default function AboutUs({ text }: aboutUs) {
 
   return (
     <motion.div id="section-aboutUs" className={styles.container} >
-      <motion.div
-        ref={containerRef}
-        animate={ContainerAnim}
-        variants={backgroundVariants}
-        className={styles.animation_object}
-      ></motion.div>
 
       <div
         style={{
