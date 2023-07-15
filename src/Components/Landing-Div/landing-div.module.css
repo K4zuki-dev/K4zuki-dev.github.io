@@ -10,8 +10,6 @@
   background: linear-gradient(45deg, var(--clr-accent), var(--clr-invalid));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-top: -95px;
-  margin-left: 230px;
 }
 
 .landing_div {
