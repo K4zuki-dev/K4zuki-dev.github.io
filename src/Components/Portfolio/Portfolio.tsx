@@ -66,6 +66,11 @@ function GridItem({
               className={styles.portfolio_image}
               sizes="(max-width: 700px) 100vw, (max-width: 1200px) 50vw, 33vw"
             ></Image>
+
+            <div style={{width: "3em", height: "3em", position: "absolute", top: 0, right: 0, backgroundColor: "transparent"}}>
+              <Image src="/images/portfolio/clickme.png" fill={true} sizes="3em" alt="Click me"></Image>
+            </div>
+
           </div>
 
           <div className={styles.flip_card_back}>
@@ -150,6 +155,7 @@ export default function Portfolio() {
               key={index}
               variants={charVariants}
               style={{ position: "relative", color: "var(--clr-text)" }}
+              className={styles.title}
             >
               {char}
             </motion.h1>
