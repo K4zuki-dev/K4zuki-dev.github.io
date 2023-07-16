@@ -88,7 +88,14 @@ export default function Skills() {
 
   return(
   <div id="section-skills" className={styles.container}>
-    {GridContainer(data)}
+    
+    <div className={styles.title}>
+      <h1>Our skills</h1>
+    </div>
+
+    <div className={styles.card_container}>
+      {GridContainer(data)}
+    </div>
   </div>
   ) 
 }
