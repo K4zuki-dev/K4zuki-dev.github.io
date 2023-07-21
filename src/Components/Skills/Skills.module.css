@@ -1,5 +1,6 @@
 .container {
   height: fit-content;
+  min-height: 100vh;
   background-color: var(--clr-background);
   display: flex;
   flex-wrap: wrap;
@@ -29,9 +30,9 @@
   position:relative;
   border: 1px solid white;
   background-color: white;
-  border-radius:50%;
-  -moz-border-radius:50%;
-  -webkit-border-radius:50%;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
 }
 .text{
     color: var(--clr-text)

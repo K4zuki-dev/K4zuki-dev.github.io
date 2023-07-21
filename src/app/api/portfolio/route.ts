@@ -6,7 +6,7 @@ export async function GET() {
   try {
     var data: any[] = [];
     const db = getFirestore(app);
-    const collectionRef = collection(db, "Sites");
+    const collectionRef = collection(db, "Portfolio");
 
     await getDocs(collectionRef).then((snapshot) => {
       snapshot.docs.map((doc) => {

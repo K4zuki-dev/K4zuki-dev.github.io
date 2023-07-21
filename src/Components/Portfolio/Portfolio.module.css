@@ -12,6 +12,7 @@
   -webkit-justify-content: center;
   justify-content: center;
   gap: 1em;
+  min-height: 100vh;
 }
 
 .wrapper {
@@ -97,4 +98,11 @@
 
 .title {
   font-size: 150%;
+}
+
+@media (max-width: 600px) {
+  .wrapper {
+    height: 15em;
+    width: 90%;
+  }
 }

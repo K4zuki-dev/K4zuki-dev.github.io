@@ -49,6 +49,7 @@ function GridItem({
     
     <div
       className={styles.wrapper}
+      key={title}
     >
       <div className={styles.skill_card}>
 
