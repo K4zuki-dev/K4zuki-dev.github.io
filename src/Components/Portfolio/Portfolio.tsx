@@ -75,13 +75,15 @@ function GridItem({
           </div>
 
           <div className={styles.flip_card_back}>
-            <Link href={link}>
+            
+            <a href={link}>
               <div style={{width: "1.5em", display: "flex",justifyContent:"center", alignItems:"center" , height: "1.5em", borderRadius: "100%",position: "absolute", right: "2em", top:"2em", backgroundColor: "white"}}>
                   <div style={{width: "1em", height: "1em", borderRadius: "100%", position: "relative"}}>
                     <Image fill={true} src="/images/link.png" alt="Link to Project"></Image>
                   </div>
               </div>
-            </Link>
+            </a>
+
             <div className={styles.flip_card_back_text}>
               <h1>{title}</h1>
               <p>{description}</p>
