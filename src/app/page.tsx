@@ -46,5 +46,3 @@ export default function Main() {
     </div>
   );
 }
-
-// Just to update vercel
