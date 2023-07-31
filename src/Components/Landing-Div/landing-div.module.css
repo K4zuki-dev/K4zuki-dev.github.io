@@ -1,16 +1,3 @@
-#with {
-  color: var(--clr-text);
-  font-size: 400%;
-  z-index: 0;
-}
-
-#us {
-  font-size: 400%;
-  z-index: 0;
-  background: linear-gradient(45deg, var(--clr-accent), var(--clr-invalid));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 .landing_div {
   position: sticky;
@@ -29,6 +16,7 @@
   background-color: var(--clr-background);
   z-index: -9999;
   overflow-x: hidden;
+  font-size: var(--heading-size);
 }
 
 .landing_fade_in {
@@ -45,7 +33,6 @@
   flex-wrap: wrap;
   -webkit-justify-content: center;
   justify-content: center;
-  font-size: 150%;
   z-index: 1;
   padding: 0 2em;
 }
@@ -73,8 +60,10 @@
 
 .color_accent {
   background: linear-gradient(45deg, var(--clr-accent), var(--clr-invalid));
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
 }
 
 .color_white {

@@ -28,19 +28,6 @@ const item2 = {
         transition: {
             ease: easeInOut,
             duration: .2,
-            delay: delayWithUs,
-        }
-}
-}
-
-const item3 = {
-    hidden: { y: "4em" },
-    show: {
-        y: "0em",
-        transition: {
-            ease: easeInOut,
-            duration: .3,
-            delay: delayWithUs,
         }
 }
 }
@@ -80,9 +67,9 @@ export default function Landing() {
                         {elems}
                 </motion.div>
 
-                <motion.div style={{display: "flex", alignItems: "center", gap: "1em", justifyContent: "center"}}>
-                    <motion.h1 initial="hidden" animate={startAnim} variants={item2} id={styles.with}>With</motion.h1> 
-                    <motion.h1 initial="hidden" animate={startAnim} variants={item3} id={styles.us}>us.</motion.h1>
+                <motion.div initial="hidden" animate={startAnim} variants={{show: {transition: {staggerChildren: .2, delayChildren: delayWithUs}}}} style={{display: "flex", alignItems: "center", gap: "1em", justifyContent: "center"}}>
+                    <motion.h1 variants={item2} className={styles.color_accent}>With</motion.h1> 
+                    <motion.h1 variants={item2} className={styles.color_accent}>us.</motion.h1>
                 </motion.div>
 
             </div>

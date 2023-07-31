@@ -154,7 +154,7 @@ export default function Portfolio() {
         style={{
           display: "flex",
           backgroundColor: "var(--clr-background)",
-          padding: "0 15vw",
+          padding: "0 var(--padding-x)",
           fontSize: "200%",
           borderBottom: "solid 1px var(--clr-accent)",
         }}
@@ -164,8 +164,7 @@ export default function Portfolio() {
             <motion.h1
               key={index}
               variants={charVariants}
-              style={{ position: "relative", color: "var(--clr-text)" }}
-              className={styles.title}
+              style={{ position: "relative", color: "var(--clr-text)", fontSize: "150%" }}
             >
               {char}
             </motion.h1>
