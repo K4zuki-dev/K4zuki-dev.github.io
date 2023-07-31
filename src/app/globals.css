@@ -1,3 +1,8 @@
+:root {
+  --padding-x: 15vw;
+  --padding-y: 10vh;
+  --padding-between: 20vh;
+}
 
 /* Für dark mode */
 [data-theme="dark"] {

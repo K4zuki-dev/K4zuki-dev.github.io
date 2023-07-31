@@ -28,7 +28,7 @@
 }
 
 .contact_form {
-  padding-top: 5em;
+  padding: var(--padding-y) 0;
 
   gap: 2em;
   display: -webkit-flex;

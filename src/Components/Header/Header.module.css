@@ -94,6 +94,12 @@
   transform-origin: left;
 }
 
+/* Here comes the Hamburger Menu styling TOO*/
+
+.hamburger_container {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .logo {
     display: none;
@@ -102,5 +108,9 @@
   .navBar {
     width: 100%;
     font-size: 4vw;
+  }
+
+  .hamburger_container {
+    display: block;
   }
 }

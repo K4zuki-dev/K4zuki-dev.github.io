@@ -1,6 +1,5 @@
 .container {
   height: fit-content;
-  min-height: 100vh;
   background-color: var(--clr-background);
   display: flex;
   flex-wrap: wrap;
@@ -9,7 +8,7 @@
   justify-content: center;
   text-align: left;
   gap: 5em;
-  
+  padding: 0 0 var(--padding-between) 0;
 }
 .skill_card {
   background-color: transparent;
@@ -20,20 +19,19 @@
 }
 .skill_card_top{
     justify-content: space-between;
-    height: min-content;
+    height: fit-content;
     border-bottom: 1px solid hsl(215, 32%, 27%);
     padding-bottom: 0.2em;
     display:flex;
     align-items: center;
 }
+
 .skills_image {
   position:relative;
-  border: 1px solid white;
-  background-color: white;
-  border-radius: 100%;
-  -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
+  width: fit-content;
+  height: 3em;
 }
+
 .text{
     color: var(--clr-text)
 }
@@ -65,7 +63,7 @@
 }
   
 .card_container {
-    padding: 10vh 15vw;
+    padding: var(--padding-y) var(--padding-x);
     display: flex;
     gap: 3em;
     flex-wrap: wrap;

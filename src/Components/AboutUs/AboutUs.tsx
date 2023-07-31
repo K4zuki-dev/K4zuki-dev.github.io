@@ -175,6 +175,8 @@ export default function AboutUs({ text }: aboutUs) {
             ></motion.div>
           </motion.h1>
         </motion.div>
+
+        
       </div>
 
       <motion.div

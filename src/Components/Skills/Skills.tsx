@@ -56,7 +56,7 @@ function GridItem({
         <div className={styles.skill_card_top}>
             
             <Image
-            src={`/images/icons/${src}`}
+            src={`/images/icons/${src}?v=${Date.now()}`}
             width={50}
             height={50}
             alt="Image of one of our Skills"

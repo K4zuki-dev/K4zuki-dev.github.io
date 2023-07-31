@@ -14,11 +14,12 @@
     background-color: var(--clr-background);
     font-size: 110%;
     position: relative;
+    padding: 0 0 var(--padding-between) 0;
   }
 
   .text_container {
     max-width: 100%;
-    padding: 15vh 15vw;
+    padding: var(--padding-y) var(--padding-x);
     display: -webkit-flex;
     display: flex;
     -webkit-flex-wrap: wrap;
@@ -58,8 +59,6 @@
   }
 
   .title {
-    padding-left: 2em;
-    padding-right: 2em;
     -webkit-transform-origin: bottom;
     transform-origin: bottom;
     color: var(--clr-text);
@@ -71,6 +70,7 @@
     display: flex;
     font-size: 150%;
     z-index: 1;
+    
   }
 
   .text {
@@ -84,14 +84,14 @@
     -webkit-justify-content: left;
     justify-content: left;
     position: relative;
-    padding-left: 15vw;
     gap: .5em;
     width: 100%;
     color: var(--clr-text);
     font-weight: bold;
     z-index: 1;
-    font-size: 150%;
     white-space: nowrap;
+    font-size: 150%;
+    padding: 0 0 0 var(--padding-x);
     border-bottom: 1px solid var(--clr-accent);
   }
 
@@ -104,12 +104,16 @@
   }
 
   @media (max-width: 600px) {
-    .container {
-      font-size: 2.8vw;
+    .text {
+      font-size: 100%;
     }
 
     .text {
       margin: 0;
+    }
+
+    .we_are {
+      font-size: 100%;
     }
 
     .we_are_h1 {

@@ -33,4 +33,4 @@ type NavButton = {
 
 type PortfolioTitle = {
     title: string
-  }
+}

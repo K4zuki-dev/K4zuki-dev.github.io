@@ -4,7 +4,7 @@
   background-color: var(--clr-background);
   text-align: center;
   color: var(--clr-text);
-  padding: 1em;
+  padding: var(--padding-y) 1em;
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
@@ -25,7 +25,8 @@
   -webkit-align-items: center;
   align-items: center;
   width: 30em;
-  height: 20em;
+  min-height: 20em;
+  height: fit-content;
   position: relative;
 }
 
@@ -82,6 +83,7 @@
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
   text-align: center;
+  height: fit-content;
 }
 
 .flip_card_back_text {
