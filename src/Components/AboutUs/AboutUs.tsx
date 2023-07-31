@@ -123,14 +123,14 @@ export default function AboutUs({ text }: aboutUs) {
 
   const textWords = phrase.split(" ").map((char, index) => {
     return (
-      <motion.h2
+      <motion.h1
         className={styles.text}
         variants={textVariants}
         style={{ position: "relative", marginRight: ".4em" }}
         key={index}
       >
         {char}
-      </motion.h2>
+      </motion.h1>
     );
   });
 

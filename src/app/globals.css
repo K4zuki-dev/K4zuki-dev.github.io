@@ -1,7 +1,10 @@
 :root {
-  --padding-x: 15vw;
-  --padding-y: 10vh;
+  --padding-x: 25vw;
+  --padding-y: 7vh;
   --padding-between: 20vh;
+
+  --text-size: large;
+  --heading-size: x-large;
 }
 
 /* Für dark mode */
@@ -10,7 +13,7 @@
   --clr-secondary: #04222F;
   --clr-background: #040F16;
 
-  --clr-text: #FAFAFA;
+  --clr-text: #cecece;
   --clr-text-alt: #b3b3b3;
   --clr-text-alt-2: #fbfbfb;
 
@@ -67,4 +70,14 @@ html {
 
 h1 {
   margin: 0;
+}
+
+@media (max-width: 500px) {
+    :root {
+      --padding-x: 25vw;
+      --padding-y: 5vh;
+
+      --text-size: 3vw;
+      --heading-size: 3.5vw;
+    }
 }

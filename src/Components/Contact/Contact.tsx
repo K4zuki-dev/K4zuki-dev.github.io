@@ -271,7 +271,7 @@ function Form() {
             <div className={styles.contact_information}>
                     <h1 style={{borderBottom: "1px solid var(--clr-text)", width: "100%"}}>Information: </h1>
 
-                    <p >Write us an Contact form and we will answer you per E-Mail</p>
+                    <p style={{fontSize: "var(--text-size)"}}>Write us an Contact form and we will answer you per E-Mail</p>
 
                     <div className={styles.contact_information_element}>
 

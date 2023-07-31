@@ -7,8 +7,6 @@
   align-items: center;
   justify-content: center;
   text-align: left;
-  gap: 5em;
-  padding: 0 0 var(--padding-between) 0;
 }
 .skill_card {
   background-color: transparent;
@@ -33,7 +31,8 @@
 }
 
 .text{
-    color: var(--clr-text)
+  color: var(--clr-text);
+  font-size: var(--text-size);
 }
 
 .wrapper {
@@ -43,30 +42,29 @@
     flex-direction: column;
     -webkit-justify-content: center;
     justify-content: center;
-    -webkit-align-items: center;
-    align-items: center;
-    width: 15em;
-    height: 10em;
+    max-width: 17em;
+    width: fit-content;
+    height: max-content;
     position: relative;
-
 }
 
 .title {
     color: var(--clr-text);
-    font-size: 150%;
     text-align: left;
     width: 100%;
-    padding: 0 15vw;
+    padding: 0 var(--padding-x);
     border-bottom: 1px solid var(--clr-accent);
-    font-size: 150%;
-
+    white-space: nowrap;
+    font-size: var(--heading-size);
+    white-space: nowrap;
 }
   
 .card_container {
     padding: var(--padding-y) var(--padding-x);
     display: flex;
     gap: 3em;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     justify-content: center;
-    align-items: center;
+    padding: var(--padding-y) var(--padding-x);
+    align-items: flex-start;
 }

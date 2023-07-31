@@ -12,7 +12,6 @@
   -webkit-justify-content: center;
   justify-content: center;
   gap: 1em;
-  min-height: 100vh;
 }
 
 .wrapper {
@@ -26,8 +25,11 @@
   align-items: center;
   width: 30em;
   height: 20em;
+  height: 20em;
   position: relative;
 }
+
+/* Fix sonne / mond bug, portfolio min height und height sollte fit-content sein */
 
 .motion_h1 {
   position: absolute;
@@ -74,6 +76,7 @@
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+  font-size: var(--text-size);
 }
 
 .flip_card_back {
@@ -82,8 +85,8 @@
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
   text-align: center;
-  min-height: 100%;
-  height: fit-content;
+  min-height: fit-content;
+  height: 100%;
 }
 
 .flip_card_back_text {
@@ -96,10 +99,7 @@
   flex-direction: column;
   max-width: 100%;
   max-height: 100%;
-}
-
-.title {
-  font-size: 150%;
+  font-size: var(--text-size);
 }
 
 @media (max-width: 600px) {

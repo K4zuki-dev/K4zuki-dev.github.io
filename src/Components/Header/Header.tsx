@@ -26,11 +26,8 @@ export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
   const { scrollYProgress } = useScroll();
   const { scrollY } = useScroll();
 
-  const initialThemeMode =
-    typeof document !== "undefined" ? document.body.dataset.theme : "light";
-  const initialThemeIcon =
-    initialThemeMode === "dark" ? <MoonIcon /> : <SunIcon />;
-
+  const initialThemeMode = typeof document !== "undefined" ? document.body.dataset.theme : "light";
+  const initialThemeIcon = initialThemeMode === "dark" ? <MoonIcon /> :<SunIcon />
   const [divHeight, setDivHeight]: [number, Function] = useState(0);
 
   useEffect(() => {
@@ -51,10 +48,10 @@ export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
 
   return (
     <>
-      <motion.header className={styles.header} style={{ opacity: opacityFade }}>
+      <motion.header className={styles.header} style={{ opacity: 1 }}>
         {" "}
         <div className={styles.header_top}>
-          <div onClick={scrollUp} className={styles.logo}>
+          {/* <div onClick={scrollUp} className={styles.logo}>
             <Image
               src="/images/logo.jpg"
               alt="Our Logo"
@@ -62,7 +59,7 @@ export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
               sizes="5em"
               className={styles.logo}
             />
-          </div>
+          </div> We dont have a logo yet */} 
 
           <nav className={styles.navBar}>
             <HeaderButton text="About us" scrollId="section-aboutUs" />
