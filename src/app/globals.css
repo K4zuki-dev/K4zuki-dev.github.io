@@ -41,6 +41,18 @@
   --clr-invalid: #ff0000;
 }
 
+/* scrollbar styling */
+
+::-webkit-scrollbar {
+  width: .2em;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 1em;
+}
+
 body {
   margin: 0;
   display: block;
