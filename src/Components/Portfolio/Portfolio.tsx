@@ -85,7 +85,7 @@ function GridItem({
             </a>
 
             <div className={styles.flip_card_back_text}>
-              <h1>{title}</h1>
+              <h2>{title}</h2>
               <p>{description}</p>
             </div>
           </div>
@@ -155,7 +155,6 @@ export default function Portfolio() {
           display: "flex",
           backgroundColor: "var(--clr-background)",
           padding: "0 var(--padding-x)",
-          fontSize: "200%",
           borderBottom: "solid 1px var(--clr-accent)",
         }}
       >

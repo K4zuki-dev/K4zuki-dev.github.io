@@ -123,14 +123,14 @@ export default function AboutUs({ text }: aboutUs) {
 
   const textWords = phrase.split(" ").map((char, index) => {
     return (
-      <motion.h1
+      <motion.p
         className={styles.text}
         variants={textVariants}
         style={{ position: "relative", marginRight: ".4em" }}
         key={index}
       >
         {char}
-      </motion.h1>
+      </motion.p>
     );
   });
 
@@ -150,33 +150,23 @@ export default function AboutUs({ text }: aboutUs) {
   return (
     <motion.div id="section-aboutUs" className={styles.container} >
 
-      <div
-        style={{
-          zIndex: 1,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
-        <motion.div className={styles.we_are}>
-          <h1 style={{ width: "fit-content", textAlign: "right" }}>We are </h1>
+      <div style={{width: "100%"}}>
+        <div className={styles.we_are}>
+            <h1>We are </h1>
 
-          <motion.h1
-            animate={sliderAnim}
-            className={styles.slider_container}
-            style={{ width: longestWordWidth }}
-          >
-            {curText}
+            <motion.h1
+              animate={sliderAnim}
+              className={styles.slider_container}
+              style={{ width: longestWordWidth }}
+            >
+              {curText}
 
-            <motion.div
-              variants={sliderVarients}
-              className={styles.slider_1}
-            ></motion.div>
-          </motion.h1>
-        </motion.div>
-
-        
+              <motion.div
+                variants={sliderVarients}
+                className={styles.slider_1}
+              ></motion.div>
+            </motion.h1>
+          </div>
       </div>
 
       <motion.div

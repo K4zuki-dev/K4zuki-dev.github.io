@@ -19,6 +19,14 @@
   font-size: var(--heading-size);
 }
 
+.withus {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: .2em;
+  justify-content: center;
+}
+
 .landing_fade_in {
   position: relative;
 }

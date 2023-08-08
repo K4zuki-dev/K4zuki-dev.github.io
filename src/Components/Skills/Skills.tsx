@@ -2,9 +2,6 @@ import styles from "./Skills.module.css";
 import {
   Variants,
   easeOut,
-  motion,
-  useAnimation,
-  useInView,
 } from "framer-motion";
 import Image from "next/image";
 import { ReactNode, useRef, useState,useEffect } from "react";

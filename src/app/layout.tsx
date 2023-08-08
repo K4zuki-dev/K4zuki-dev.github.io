@@ -1,6 +1,4 @@
 import "./globals.css";
-import { Kanit } from "next/font/google";
-const font = Kanit({ weight: "600", subsets: ["latin"] });
 
 export const metadata = {
   title: "My Portfolia",
@@ -21,7 +19,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body>
         {children}
       </body>
     </html>

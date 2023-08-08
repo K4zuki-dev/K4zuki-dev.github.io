@@ -1,9 +1,10 @@
 .footer {
   background-color: var(--clr-accent3);
   color: var(--clr-text-alt-2);
-  padding: 0.1rem;
+  padding: 3rem;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: var(--text-size);
+  font-weight: 200;
 }
 
 .footer_link {

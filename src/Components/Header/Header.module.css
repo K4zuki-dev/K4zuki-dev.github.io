@@ -44,10 +44,9 @@
   display: flex;
   -webkit-align-items: center;
   align-items: center;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  width: fit-content;
-  min-width: 50%;
+  -webkit-justify-content: space-evenly;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .themeButton {
@@ -69,7 +68,6 @@
   color: var(--clr-text-alt-2);
   border: none;
   font-size: var(--text-size);
-  font-weight: bold;
   cursor: pointer;
   white-space: nowrap;
 
@@ -89,18 +87,9 @@
 
 .button_border {
   height: 2px;
-  position: absolute;
-  top: 100%;
-  background-color: var(--clr-background);
-  width: 90%;
-  -webkit-transform-origin: left;
-  transform-origin: left;
-}
-
-/* Here comes the Hamburger Menu styling TOO*/
-
-.hamburger_container {
-  display: none;
+  position: relative;
+  background-color: var(--clr-accent);
+  width: 120%;
 }
 
 @media (max-width: 600px) {
@@ -110,10 +99,6 @@
 
   .navBar {
     width: 100%;
-    font-size: 4vw;
   }
 
-  .hamburger_container {
-    display: block;
-  }
 }

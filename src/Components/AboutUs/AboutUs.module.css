@@ -57,7 +57,6 @@
     display: -webkit-flex;
     display: flex;
     z-index: 1;
-    
   }
 
   .text {
@@ -67,20 +66,16 @@
   }
 
   .we_are {
-    display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: left;
-    justify-content: left;
-    position: relative;
-    gap: .5em;
+    gap: .2em;
     width: 100%;
     color: var(--clr-text);
     font-weight: bold;
     z-index: 1;
     white-space: nowrap;
     font-size: var(--heading-size);
-    padding: 0 0 0 var(--padding-x);
     border-bottom: 1px solid var(--clr-accent);
+    padding: 0 var(--padding-x);
   }
 
   .Banner {

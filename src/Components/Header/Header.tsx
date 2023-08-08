@@ -1,13 +1,10 @@
 import styles from "./Header.module.css";
-import Image from "next/image";
 import {
   Variants,
   easeOut,
   motion,
   useScroll,
-  useTransform,
 } from "framer-motion";
-import { useEffect, useState } from "react";
 
 const buttonVariants: Variants = {
   hidden: {
@@ -16,7 +13,7 @@ const buttonVariants: Variants = {
   visible: {
     scaleX: 1,
     transition: {
-      duration: 0.2,
+      duration: 0.15,
       ease: easeOut,
     },
   },
@@ -24,27 +21,9 @@ const buttonVariants: Variants = {
 
 export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
   const { scrollYProgress } = useScroll();
-  const { scrollY } = useScroll();
 
   const initialThemeMode = typeof document !== "undefined" ? document.body.dataset.theme : "light";
   const initialThemeIcon = initialThemeMode === "dark" ? <MoonIcon /> :<SunIcon />
-  const [divHeight, setDivHeight]: [number, Function] = useState(0);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDivHeight(document.getElementById("section-landingdiv")?.getBoundingClientRect().bottom as number);
-    }, 1)
-  }, []);
-
-  const opacityFade = useTransform(
-    scrollY,
-    [divHeight - 300, divHeight - 200],
-    [0, 1]
-  );
-
-  function scrollUp() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
 
   return (
     <>
@@ -99,7 +78,7 @@ function HeaderButton({ text, scrollId }: NavButton) {
       className={styles.button_container}
       onClick={scrollToSection}
     >
-      <motion.button className={styles.navButton}>{text}</motion.button>
+      <motion.button className={styles.navButton}><p>{text}</p></motion.button>
       <motion.div variants={buttonVariants} className={styles.button_border} />
     </motion.div>
   );
