@@ -23,6 +23,12 @@
   color: var(--clr-text);
 }
 
+.title {
+  border-bottom: 1px solid var(--clr-text);
+  width: 100%;
+  font-size: var(--text-size);
+}
+
 .contact_form > h1 {
   font-size: var(--heading-size);
 }
@@ -79,7 +85,9 @@
   flex-direction: column;
   -webkit-align-items: baseline;
   align-items: baseline;
+  gap: 1em;
   background-color: var(--clr-background);
+  font-size: var(--text-size);
 }
 
 .contact_information_element {

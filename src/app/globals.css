@@ -3,8 +3,8 @@
   --padding-y: 7vh;
   --padding-between: 20vh;
 
-  --text-size: large;
-  --heading-size: x-large;
+  --text-size: 1.5rem;
+  --heading-size: 3rem;
 }
 
 /* Für dark mode */
@@ -43,6 +43,55 @@
 
 /* scrollbar styling */
 
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 ::-webkit-scrollbar {
   width: .2em;
   background-color: transparent;
@@ -72,12 +121,26 @@ h1 {
   margin: 0;
 }
 
-@media (max-width: 500px) {
-    :root {
-      --padding-x: 25vw;
-      --padding-y: 5vh;
+@media (max-width: 1000px) {
+  :root {
+    --padding-x: 15vw;
+  }
+}
 
-      --text-size: 3vw;
-      --heading-size: 3.5vw;
-    }
+@media (max-width: 700px) {
+  :root {
+    --padding-x: 5vw;
+    --padding-y: 5vh;
+
+    --text-size: 4vw;
+    --heading-size: 6vw;
+
+  }
+}
+
+@media (max-width: 400px) {
+  :root {
+    --text-size: 4vw;
+    --heading-size: 7vw;
+  }
 }

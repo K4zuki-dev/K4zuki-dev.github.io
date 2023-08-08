@@ -24,6 +24,7 @@
     flex-wrap: wrap;
     -webkit-align-items: center;
     align-items: center;
+    justify-content: center;
     z-index: 1;
   }
 
@@ -60,7 +61,7 @@
   }
 
   .text {
-    font-size: x-large;
+    font-size: var(--text-size);
     margin: 2px;
     color: var(--clr-text);
   }
