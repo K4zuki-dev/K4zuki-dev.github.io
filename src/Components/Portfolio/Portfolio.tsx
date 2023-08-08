@@ -164,7 +164,7 @@ export default function Portfolio() {
             <motion.h1
               key={index}
               variants={charVariants}
-              style={{ position: "relative", color: "var(--clr-text)", fontSize: "150%" }}
+              style={{ position: "relative", color: "var(--clr-text)", fontSize: "var(--heading-size)" }}
             >
               {char}
             </motion.h1>

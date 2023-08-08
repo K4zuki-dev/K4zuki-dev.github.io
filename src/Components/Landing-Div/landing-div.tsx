@@ -67,7 +67,7 @@ export default function Landing() {
                         {elems}
                 </motion.div>
 
-                <motion.div initial="hidden" animate={startAnim} variants={{show: {transition: {staggerChildren: .2, delayChildren: delayWithUs}}}} style={{display: "flex", alignItems: "center", gap: "1em", justifyContent: "center"}}>
+                <motion.div initial="hidden" animate={startAnim} variants={{show: {transition: {staggerChildren: .2, delayChildren: delayWithUs}}}} style={{display: "flex", alignItems: "center", gap: ".2rem", justifyContent: "center"}}>
                     <motion.h1 variants={item2} className={styles.color_accent}>With</motion.h1> 
                     <motion.h1 variants={item2} className={styles.color_accent}>us.</motion.h1>
                 </motion.div>

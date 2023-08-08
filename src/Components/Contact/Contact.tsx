@@ -230,7 +230,7 @@ function Form() {
 
             <div className={styles.form_wrapper}>
 
-                <h1 style={{borderBottom: "1px solid var(--clr-text)", width: "100%"}}>Contact us:</h1>
+                <h1 className={styles.title}>Contact us:</h1>
 
 
                 <Input required={true}>
@@ -269,7 +269,7 @@ function Form() {
             </div>
 
             <div className={styles.contact_information}>
-                    <h1 style={{borderBottom: "1px solid var(--clr-text)", width: "100%"}}>Information: </h1>
+                    <h1 className={styles.title}>Information: </h1>
 
                     <p style={{fontSize: "var(--text-size)"}}>Write us an Contact form and we will answer you per E-Mail</p>
 

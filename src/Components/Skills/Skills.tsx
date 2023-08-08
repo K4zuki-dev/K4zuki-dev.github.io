@@ -44,7 +44,6 @@ function GridItem({
   Description = "defaultdefaultdefault",
 }: Skills) {
     const src = img
-    console.log(src)
   return (
     
     <div
