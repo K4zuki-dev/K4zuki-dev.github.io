@@ -8,6 +8,8 @@ export async function POST(req: Request) {
     const collectionRef = collection(db, "Contacts");
     const reqBody: dbContact = await req.json();
 
+    console.log(reqBody)
+
     await addDoc(collectionRef, reqBody);
 
     return NextResponse.json({ status: 200 });

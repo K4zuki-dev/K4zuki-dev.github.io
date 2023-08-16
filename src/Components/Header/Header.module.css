@@ -88,7 +88,7 @@
 .button_border {
   height: 2px;
   position: relative;
-  background-color: var(--clr-accent);
+  background-color: var(--clr-text);
   width: 120%;
 }
 
