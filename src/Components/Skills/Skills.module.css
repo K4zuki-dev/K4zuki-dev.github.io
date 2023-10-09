@@ -56,7 +56,8 @@
     border-bottom: 1px solid var(--clr-accent);
     white-space: nowrap;
     font-size: var(--heading-size);
-    white-space: nowrap;
+    background-color: var(--clr-background);
+    z-index: 1;
 }
   
 .card_container {

@@ -25,18 +25,6 @@ export default function Contact() {
     )
 }
 
-const inputVariants: Variants = {
-    show: {
-        borderBottom: "1px solid gray",
-        transition: {
-            duration: .5,
-        }
-    },
-    hidden: {
-        borderBottom: "1px solid red"
-    }
-}
-
 function Form() {
     const [emailValue, setEmailValue] = useState("")
     const [validEmail, setValidEmail] = useState(false)

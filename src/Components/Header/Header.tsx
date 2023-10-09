@@ -1,13 +1,10 @@
 import styles from "./Header.module.css";
-import Image from "next/image";
 import {
   Variants,
   easeOut,
   motion,
   useScroll,
-  useTransform,
 } from "framer-motion";
-import { useEffect, useState } from "react";
 
 const buttonVariants: Variants = {
   hidden: {
@@ -24,27 +21,10 @@ const buttonVariants: Variants = {
 
 export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
   const { scrollYProgress } = useScroll();
-  const { scrollY } = useScroll();
+  scrollYProgress.set(0)
 
   const initialThemeMode = typeof document !== "undefined" ? document.body.dataset.theme : "light";
   const initialThemeIcon = initialThemeMode === "dark" ? <MoonIcon /> :<SunIcon />
-  const [divHeight, setDivHeight]: [number, Function] = useState(0);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDivHeight(document.getElementById("section-landingdiv")?.getBoundingClientRect().bottom as number);
-    }, 1)
-  }, []);
-
-  const opacityFade = useTransform(
-    scrollY,
-    [divHeight - 300, divHeight - 200],
-    [0, 1]
-  );
-
-  function scrollUp() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
 
   return (
     <>
@@ -71,10 +51,7 @@ export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
             </button>
           </nav>
         </div>
-        <motion.div
-          style={{ scaleX: scrollYProgress }}
-          className={styles.header_bottom}
-        />
+      <motion.div className={styles.header_bottom} style={{scaleX: scrollYProgress}}></motion.div>
       </motion.header>
     </>
   );

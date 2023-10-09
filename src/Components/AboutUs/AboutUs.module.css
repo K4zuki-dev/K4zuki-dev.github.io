@@ -74,9 +74,11 @@
     position: relative;
     gap: .5em;
     width: 100%;
+    height: 100%;
     color: var(--clr-text);
     font-weight: bold;
     z-index: 1;
+    align-items: center;
     white-space: nowrap;
     font-size: var(--heading-size);
     padding: 0 0 0 var(--padding-x);

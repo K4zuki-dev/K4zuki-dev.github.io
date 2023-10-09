@@ -9,7 +9,7 @@
   height: fit-content;
   position: fixed;
   top: 0;
-  z-index: 9999;
+  z-index: 2;
   background-color: black;
   overflow-x: hidden;
 }
@@ -29,6 +29,7 @@
   background-color: var(--clr-accent);
   -webkit-transform-origin: left;
   transform-origin: left;
+  transform: scaleX(0);
 }
 
 .logo {
@@ -71,6 +72,7 @@
   font-size: var(--text-size);
   font-weight: bold;
   cursor: pointer;
+  font-weight: 200;
   white-space: nowrap;
 
 }
@@ -91,10 +93,8 @@
   height: 2px;
   position: absolute;
   top: 100%;
-  background-color: var(--clr-background);
-  width: 90%;
-  -webkit-transform-origin: left;
-  transform-origin: left;
+  background-color: var(--clr-accent);
+  width: 100%;
 }
 
 /* Here comes the Hamburger Menu styling TOO*/
