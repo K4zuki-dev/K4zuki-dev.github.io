@@ -25,6 +25,18 @@ export default function Contact() {
     )
 }
 
+const inputVariants: Variants = {
+    show: {
+        borderBottom: "1px solid gray",
+        transition: {
+            duration: .5,
+        }
+    },
+    hidden: {
+        borderBottom: "1px solid red"
+    }
+}
+
 function Form() {
     const [emailValue, setEmailValue] = useState("")
     const [validEmail, setValidEmail] = useState(false)
@@ -275,7 +287,7 @@ function Form() {
     )
 }
 
-function Input({children, title, required}: contactForm) {
+function Input({children, title}: contactForm) {
 
     return (
     <div className={styles.input_wrapper}>

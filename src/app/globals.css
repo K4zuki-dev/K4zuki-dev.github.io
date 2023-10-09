@@ -111,6 +111,10 @@ body {
   background-color: var(--clr-background);
 }
 
+main {
+  height: 100%;
+}
+
 body,
 html {
   position: relative;
