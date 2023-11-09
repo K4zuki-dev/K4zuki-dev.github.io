@@ -124,14 +124,12 @@ export default function AboutUs({ text }: aboutUs) {
   const textWords = phrase.split(" ").map((char, index) => {
     return (
       <motion.p
-      <motion.p
         className={styles.text}
         variants={textVariants}
         style={{ position: "relative", marginRight: ".4em" }}
         key={index}
       >
         {char}
-      </motion.p>
       </motion.p>
     );
   });
