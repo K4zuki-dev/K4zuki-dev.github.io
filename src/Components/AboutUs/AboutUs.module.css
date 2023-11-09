@@ -69,9 +69,11 @@
     display: flex;
     gap: .2em;
     width: 100%;
+    height: 100%;
     color: var(--clr-text);
     font-weight: bold;
     z-index: 1;
+    align-items: center;
     white-space: nowrap;
     font-size: var(--heading-size);
     border-bottom: 1px solid var(--clr-accent);

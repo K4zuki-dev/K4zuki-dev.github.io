@@ -34,7 +34,8 @@
 }
 
 .contact_form {
-
+  border: 1px solid var(--clr-text);
+  border-radius: 1em;
   gap: 2em;
   display: -webkit-flex;
   display: flex;
@@ -60,6 +61,8 @@
 .form_wrapper {
   padding: 2rem;
 
+  padding: 2rem;
+
   width: 100%;
   max-height: 100%;
   display: -webkit-flex;
@@ -72,7 +75,7 @@
   -webkit-flex-direction: column;
   flex-direction: column;
   position: relative;
-  background-color: var(--clr-background);
+  background-color: var(--clr-secondary);
 }
 
 .contact_information {
@@ -87,7 +90,7 @@
   -webkit-align-items: baseline;
   align-items: flex-start;
   gap: 1em;
-  background-color: var(--clr-background);
+  background-color: var(--clr-secondary);
   font-size: var(--text-size);
 }
 

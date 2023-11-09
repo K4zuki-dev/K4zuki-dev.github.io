@@ -1,11 +1,15 @@
 "use client"
-
 import styles from "./landing-div.module.css"
 import { ReactNode, useEffect, useRef } from "react"
-import { easeInOut, motion, useAnimation, useInView } from "framer-motion"
+import { easeInOut, motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion"
+import Image from "next/image"
 
-const delaySentence: number = .5
-const delayWithUs: number = delaySentence+1
+const delaySentence: number = 3
+const delayWithUs: number = delaySentence+1.5
+
+type LandingProps = {
+    imgAnimation: number[]
+}
 
 const container = {
     show: {
@@ -17,14 +21,24 @@ const container = {
 }
 
 const item = {
-    hidden: { },
-    show: { top: "0px" }
+    hidden: {
+        opacity: 0,
+        y: "-3em"
+    },
+    show: { 
+        opacity: 1,
+        y: "0" 
+    }
 }
 
 const item2 = {
-    hidden: { y: "3em" },
+    hidden: {
+     y: "3em",
+     opacity: 0,
+},
     show: {
         y: "0em",
+        opacity: 1,
         transition: {
             ease: easeInOut,
             duration: .2,
@@ -33,38 +47,54 @@ const item2 = {
 }
 
 
-export default function Landing() {
-
+export default function Landing({imgAnimation}: LandingProps) {
     const startAnim = useAnimation()
     const containerRef = useRef(null)
     const startInView = useInView(containerRef, {once: true})
+
+    const {scrollYProgress} = useScroll({
+        target: containerRef,
+        offset: ["start start", "end start"]
+    })
+
+    const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "500%"])
+
 
     useEffect(() => {
         if (startInView) {
             setTimeout(() => {
                 startAnim.start("show")
-            }, 1000)
+            }, delaySentence*1000)
         }
-    }, [startInView])
+    }, [startAnim, startInView])
 
     const words: string[] = ["Bring", "your", "dreams", "and", "ambitions", "to", "life"]
     const elems: ReactNode[] = words.map((word) => {
-        return <motion.h1 variants={item} key={word} className={`${styles.landing_fade_in} ${styles.active} ${(word === "ambitions" || word === "life" || word === "dreams") ? (styles.color_accent) : (styles.color_white)}`}>{word}</motion.h1>
+        return <motion.h1 variants={item} key={word} className={`${styles.landing_fade_in} ${(word === "ambitions" || word === "life" || word === "dreams") ? (styles.color_accent) : (styles.color_white)}`}>{word}</motion.h1>
     })
 
 
     return (
         <>
+
         <div ref={containerRef} className={styles.landing_div} id="section-landingdiv">
+{/* 
+            <motion.div style={{y: backgroundY}} className={styles.parallax_background}>
+                <Image
+                    src={`/images/parallax_background.png?v=${Date.now()}`}
+                    alt="Test"
+                    fill={true}
+                >
+                </Image>
+            </motion.div> */}
 
-            <div className={styles.overlay}>
+            {/* Fix this skewing bs */}
 
-            </div>
-
-            <div className={styles.landing_div_text}>
+            <motion.div style={{y: textY}} className={styles.landing_div_text}>
 
                 <motion.div initial="hidden" animate={startAnim} variants={container} className={styles.landing_div_sentence}>
-                        {elems}
+                            {elems}
                 </motion.div>
 
                 <motion.div initial="hidden" animate={startAnim} variants={{show: {transition: {staggerChildren: .2, delayChildren: delayWithUs}}}} className={styles.withus}>
@@ -72,11 +102,18 @@ export default function Landing() {
                     <motion.h1 variants={item2} className={styles.color_accent}>us.</motion.h1>
                 </motion.div>
 
-            </div>
+            </motion.div>
 
-            <div className={styles.overlay}></div>
+            {/* <motion.div className={styles.parallax}>
+                <Image
+                    src={`/images/parallax.png?v=${Date.now()}`}
+                    alt="Parallax Effect Picture"
+                    fill={true}
+                ></Image>
+            </motion.div> */}
 
         </div>
+
 
         </>
     )

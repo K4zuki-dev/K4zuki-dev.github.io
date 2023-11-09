@@ -124,6 +124,7 @@ export default function AboutUs({ text }: aboutUs) {
   const textWords = phrase.split(" ").map((char, index) => {
     return (
       <motion.p
+      <motion.p
         className={styles.text}
         variants={textVariants}
         style={{ position: "relative", marginRight: ".4em" }}
@@ -131,26 +132,15 @@ export default function AboutUs({ text }: aboutUs) {
       >
         {char}
       </motion.p>
+      </motion.p>
     );
   });
 
-  const titleWords = title.split(" ").map((char, index) => {
-    return (
-      <motion.h1
-        className={styles.text}
-        variants={textVariants}
-        style={{ position: "relative", marginRight: ".4em" }}
-        key={index}
-      >
-        {char}
-      </motion.h1>
-    );
-  });
 
   return (
     <motion.div id="section-aboutUs" className={styles.container} >
 
-      <div style={{width: "100%"}}>
+      <div style={{width: "100%", height: "5em"}}>
         <div className={styles.we_are}>
             <h1>We are </h1>
 
@@ -161,12 +151,14 @@ export default function AboutUs({ text }: aboutUs) {
             >
               {curText}
 
-              <motion.div
-                variants={sliderVarients}
-                className={styles.slider_1}
-              ></motion.div>
-            </motion.h1>
-          </div>
+            <motion.div
+              variants={sliderVarients}
+              className={styles.slider_1}
+            ></motion.div>
+          </motion.h1>
+        </div>
+
+        
       </div>
 
       <motion.div

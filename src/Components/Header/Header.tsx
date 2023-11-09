@@ -21,6 +21,7 @@ const buttonVariants: Variants = {
 
 export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
   const { scrollYProgress } = useScroll();
+  scrollYProgress.set(0)
 
   const initialThemeMode = typeof document !== "undefined" ? document.body.dataset.theme : "light";
   const initialThemeIcon = initialThemeMode === "dark" ? <MoonIcon /> :<SunIcon />
@@ -41,19 +42,20 @@ export default function Header({ toggleTheme }: { toggleTheme: () => void }) {
           </div> We dont have a logo yet */} 
 
           <nav className={styles.navBar}>
-            <HeaderButton text="About us" scrollId="section-aboutUs" />
-            <HeaderButton text="Skills" scrollId="section-skills" />
-            <HeaderButton text="Portfolio" scrollId="section-portfolio" />
-            <HeaderButton text="Contact" scrollId="section-contact" />
-            <button onClick={toggleTheme} className={styles.themeButton}>
-              {initialThemeIcon}
-            </button>
+            <div className={styles.buttons}>
+              <HeaderButton text="About us" scrollId="section-aboutUs" />
+              <HeaderButton text="Skills" scrollId="section-skills" />
+              <HeaderButton text="Portfolio" scrollId="section-portfolio" />
+              <HeaderButton text="Contact" scrollId="section-contact" />
+            </div>
+            <div>
+              <button onClick={toggleTheme} className={styles.themeButton}>
+                {initialThemeIcon}
+              </button>
+            </div>
           </nav>
         </div>
-        <motion.div
-          style={{ scaleX: scrollYProgress }}
-          className={styles.header_bottom}
-        />
+      <motion.div className={styles.header_bottom} style={{scaleX: scrollYProgress}}></motion.div>
       </motion.header>
     </>
   );
