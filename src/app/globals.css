@@ -12,7 +12,7 @@
 /* Für dark mode */
 [data-theme="dark"] {
   --clr-primary: #42F0CD;
-  --clr-secondary: #04222F;
+  --clr-secondary: rgb(3, 15, 20);
   --clr-background: #040F16;
 
   --clr-text: #cecece;
@@ -29,7 +29,7 @@
 /* Für light mode */
 [data-theme="light"] {
   --clr-primary: #42f0cd;
-  --clr-secondary: #c2e9fa;
+  --clr-secondary: #edf6fa;
   --clr-background: #fbfbfb;
 
   --clr-text: #1b1b1b;

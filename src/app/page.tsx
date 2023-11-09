@@ -104,18 +104,18 @@ export default function Main() {
           <motion.div variants={loadingVariants} className={styles.ball}></motion.div>
           <motion.div variants={loadingVariants} className={styles.ball}></motion.div>
         </motion.div>
+        
+        <main onMouseMove={handleMouseMove}>
+          <Header toggleTheme={toggleTheme} />
 
-      <main>
-        <Header toggleTheme={toggleTheme} />
+          <Landing imgAnimation={[moveX, moveY]}/>
+          <AboutUs text={aboutUsText} />
+          <Skills />
+          <Portfolio />
+          <Contact />
 
-        <Landing imgAnimation={[moveX, moveY]}/>
-        <AboutUs text={aboutUsText} />
-        <Skills />
-        <Portfolio />
-        <Contact />
-
-        <Footer />
-      </main>
+          <Footer />
+        </main>
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client"
 import styles from "./landing-div.module.css"
 import { ReactNode, useEffect, useRef } from "react"
-import { easeInOut, motion, useAnimation, useInView, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion"
+import { easeInOut, motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion"
 import Image from "next/image"
 
 const delaySentence: number = 3
@@ -58,9 +58,8 @@ export default function Landing({imgAnimation}: LandingProps) {
     })
 
     const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
-    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "200%"])
+    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "500%"])
 
-    const [moveX] = imgAnimation
 
     useEffect(() => {
         if (startInView) {
@@ -80,17 +79,19 @@ export default function Landing({imgAnimation}: LandingProps) {
         <>
 
         <div ref={containerRef} className={styles.landing_div} id="section-landingdiv">
-
-            <motion.div style={{x: moveX, y: backgroundY}} className={styles.parallax_background}>
+{/* 
+            <motion.div style={{y: backgroundY}} className={styles.parallax_background}>
                 <Image
-                    src={`/images/parallax_background.jpg?ver=${Date.now()}`}
+                    src={`/images/parallax_background.png?v=${Date.now()}`}
                     alt="Test"
                     fill={true}
                 >
                 </Image>
-            </motion.div>
+            </motion.div> */}
 
-            <motion.div style={{x: -moveX/2, y: textY}} className={styles.landing_div_text}>
+            {/* Fix this skewing bs */}
+
+            <motion.div style={{y: textY}} className={styles.landing_div_text}>
 
                 <motion.div initial="hidden" animate={startAnim} variants={container} className={styles.landing_div_sentence}>
                             {elems}
@@ -103,13 +104,13 @@ export default function Landing({imgAnimation}: LandingProps) {
 
             </motion.div>
 
-            <div className={styles.parallax}>
+            {/* <motion.div className={styles.parallax}>
                 <Image
-                    src={`/images/parallax.png?ver=${Date.now()}`}
+                    src={`/images/parallax.png?v=${Date.now()}`}
                     alt="Parallax Effect Picture"
                     fill={true}
                 ></Image>
-            </div>
+            </motion.div> */}
 
         </div>
 

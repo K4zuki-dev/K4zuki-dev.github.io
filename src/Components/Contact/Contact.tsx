@@ -11,9 +11,9 @@ export default function Contact() {
 
         <div className={styles.container} id="section-contact">
 
-            <div className={styles.background}>
+            {/* <div className={styles.background}>
                 <Image src="/images/Contact.jpg" alt="Illustration of Vectorart" fill={true} sizes="50em"></Image>
-            </div>
+            </div> */}
 
             <div className={styles.contact_form}>
 
